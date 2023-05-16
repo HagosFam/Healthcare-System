@@ -1,4 +1,4 @@
-#ABOUT THE PROJECTS
+# ABOUT THE PROJECTS
 
 in every service there is a docker-compose file , it contains only databases required to run the services for now but will be updated as we gon to include all third party service provides we use.
 to run those files, navigate to the service directory from your terminal and run docker-compose-up.
