@@ -1,7 +1,7 @@
-package miu.edu.sa.queryServices;
+package com.healthcare.appointment.sa.queryServices;
 
-import miu.edu.sa.domains.Appointment;
-import miu.edu.sa.domains.Doctor;
+import com.healthcare.appointment.sa.domains.Appointment;
+import com.healthcare.appointment.sa.domains.Doctor;
 
 import java.util.List;
 

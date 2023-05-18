@@ -1,4 +1,4 @@
-package miu.edu.sa.domains;
+package com.healthcare.appointment.sa.domains;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
