@@ -9,7 +9,10 @@ import java.util.Optional;
 
 @Repository
 public interface IAppointmentRepository extends JpaRepository<Appointment, Long> {
-    List<Appointment> findByAppointmentId(long appointmentId);
+    List<Appointment> findByDoctorId(long doctorId);
+
+    Appointment findByAppointmentId(Long id);
+
     default Appointment update(long id, Appointment appointment) {
         Optional<Appointment> optionalAppointment = findById(id);
         if (optionalAppointment.isPresent()) {
