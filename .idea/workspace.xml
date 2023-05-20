@@ -5,7 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/patient-management-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/PatientManagementServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/controller/PatientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/dto/PatientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/entity/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/entity/Patient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/EmailAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/ErrorDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/PhoneNumberAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/mapper/AutoPatientMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/repository/PatientRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/service/PatientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/service/impl/PatientServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patient-management-service/src/test/java/patientmanagementservice/PatientManagementServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient-management-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,11 +53,6 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2PtWAthNeqX4zhcRXOqgYeooWAD" />
   <component name="ProjectLevelVcsManager">
@@ -38,22 +62,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;53e8103492c4a339e8d2b57cc5f2e0ad&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "4e15b4ec118086770fa00fd1c56a163e",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Healthcare-System" />
       <method v="2">
@@ -63,6 +87,20 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="Healthcare-System" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="appointment-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="miu.edu.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatientManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="patient-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="patientmanagementservice.PatientManagementServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -79,6 +117,8 @@
       <workItem from="1684276726272" duration="1555000" />
       <workItem from="1684289919525" duration="66000" />
       <workItem from="1684290010706" duration="325000" />
+      <workItem from="1684293721430" duration="412000" />
+      <workItem from="1684613814175" duration="1602000" />
     </task>
     <servers />
   </component>
