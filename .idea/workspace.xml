@@ -4,6 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="ecf8ad4d-2c0f-4098-ad2e-3aecf5c2fe05" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/InsuranceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/model/InsuranceClaim.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/model/enums/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/repository/InsuranceClaimRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/service/InsuranceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/test/java/TestApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insurance-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/insurance-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insurance-management-service/src/main/java/InsuranceApplication.java" beforeDir="false" />
+
     <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/patient-management-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/patient-management-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
@@ -41,12 +51,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2PqdqDwUBzhjsItnNRBCbAbNvwy" />
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -73,17 +96,60 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "4e15b4ec118086770fa00fd1c56a163e",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.09398496",
+    "project.structure.side.proportion": "0.368356",
+    "spring.configuration.checksum": "393629ef7e273da01206221a9d2da7f3",
     "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.healthcare.insurance.model.enums" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/prescription-management-service/src" />
+      <recent name="$PROJECT_DIR$/patient-management-service/src" />
+      <recent name="$PROJECT_DIR$/notification-service/src" />
+      <recent name="$PROJECT_DIR$/insurance-management-service/src" />
+      <recent name="$PROJECT_DIR$/appointment-management-service/src/test/java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/electronic-health-record-service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.InsuranceApplication">
+    <configuration name="TestApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="insurance-management-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestApp" />
+      <option name="TEST_OBJECT" value="class" />
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;53e8103492c4a339e8d2b57cc5f2e0ad&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }]]></component>
   <component name="RunManager" selected="Spring Boot.Application">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Healthcare-System" />
+ 
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InsuranceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="insurance-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.insurance.InsuranceApplication" />
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="Healthcare-System" />
       <option name="filePath" />
@@ -91,6 +157,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+      
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="appointment-management-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="miu.edu.Application" />
@@ -105,10 +172,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestApp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="ecf8ad4d-2c0f-4098-ad2e-3aecf5c2fe05" name="Changes" comment="" />
+      <created>1684188736275</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684188736275</updated>
+      <workItem from="1684188737428" duration="1475000" />
+      <workItem from="1684272972637" duration="10761000" />
+
       <changelist id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="" />
       <created>1684276723821</created>
       <option name="number" value="Default" />
