@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/appointment")
 @CrossOrigin("*")
 public class AppointmentQueryController {
-
     @Autowired
     IAppointmentQueryService queryService;
 
