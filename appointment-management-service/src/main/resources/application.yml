@@ -1,0 +1,18 @@
+server:
+    port: 8082
+
+spring:
+    application:
+        name: appointment-management-service
+    datasource:
+        password: postgres
+        url: jdbc:postgresql://localhost:2021/postgres
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
