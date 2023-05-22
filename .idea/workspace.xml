@@ -9,19 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/billing-and-payment-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/billing-and-payment-service/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/billing-and-payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/billing-and-payment-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/electronic-health-record-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/electronic-health-record-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/insurance-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prescription-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/prescription-management-service/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +34,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -57,43 +48,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Academic/MIU/Courses/SA/HealthCareSystem/SS/Healthcare-System/billing-and-payment-service/src/main/resources/META-INF",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.1150748",
-    "ruby.rails.projectView.checked": "true",
-    "spring.configuration.checksum": "edcd9addc04df72afe9d401e2a6f34ef",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Academic/MIU/Courses/SA/HealthCareSystem/SS/Healthcare-System/billing-and-payment-service/src/main/resources/META-INF&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;edcd9addc04df72afe9d401e2a6f34ef&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RubyModuleManagerSettings">
     <option name="blackListedRootsPaths">
       <list>
-        <option value="$PROJECT_DIR$/electronic-health-record-service" />
         <option value="$PROJECT_DIR$" />
+        <option value="$PROJECT_DIR$/electronic-health-record-service" />
+        <option value="$PROJECT_DIR$/appointment-management-service" />
         <option value="$PROJECT_DIR$/insurance-management-service" />
-        <option value="$PROJECT_DIR$/notification-service" />
         <option value="$PROJECT_DIR$/billing-and-payment-service" />
         <option value="$PROJECT_DIR$/patient-management-service" />
-        <option value="$PROJECT_DIR$/appointment-management-service" />
+        <option value="$PROJECT_DIR$/notification-service" />
       </list>
     </option>
   </component>
@@ -174,6 +165,13 @@
     <configuration name="BillingAndPaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="billing-and-payment-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.BillingAndPaymentServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElectronicHealthRecordApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="electronic-health-record-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.miu.ElectronicHealthRecord.ElectronicHealthRecordApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
