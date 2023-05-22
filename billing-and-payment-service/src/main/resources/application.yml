@@ -1,9 +1,8 @@
-server:
-  port: 8081
-
 spring:
   application:
-  name: billing-and-payment-service
+    name: billing-and-payment-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
   datasource:
     password: postgres
     url: jdbc:postgresql://localhost:2020/postgres

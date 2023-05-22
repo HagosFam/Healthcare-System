@@ -1,7 +1,7 @@
 package com.healthcare.insurance.controller;
 
-import com.healthcare.insurance.model.InsuranceClaim;
 import com.healthcare.insurance.service.InsuranceService;
+import com.healthcare.insurance.model.InsuranceClaim;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/insurance")
+@RequestMapping("/api/v1/insurances")
 public class InsuranceController {
     private final InsuranceService insuranceService;
 

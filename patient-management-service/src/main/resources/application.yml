@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-  name: patient-management-service
+    name: patient-management-service
   datasource:
     password: postgres
     url: jdbc:postgresql://localhost:2022/postgres
@@ -21,3 +21,13 @@ spring:
   sql:
     init:
       mode: always
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0 #100% metrics will be published to zipkin server
