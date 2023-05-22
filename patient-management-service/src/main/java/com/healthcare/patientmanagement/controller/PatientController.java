@@ -33,8 +33,8 @@ public class PatientController {
             responseCode = "201",
             description = "HTTP Status 201 CREATED"
     )
-    @PostMapping("create")
-    public ResponseEntity<PatientDto> createPatient(
+    @PostMapping
+    public ResponseEntity<PatientDto> create(
             @Valid
             @RequestBody PatientDto patientDto){
         PatientDto savedPatient = patientService.createPatient(patientDto);
@@ -49,7 +49,7 @@ public class PatientController {
             description = "HTTP Status 200 SUCCESS"
     )
     @GetMapping
-    public ResponseEntity<List<PatientDto>> getAllPatients(){
+    public ResponseEntity<List<PatientDto>> getAll(){
         List<PatientDto> patients = patientService.getAllPatients();
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
@@ -63,7 +63,7 @@ public class PatientController {
             description = "HTTP Status 200 OK"
     )
     @GetMapping("{id}")
-    public ResponseEntity<PatientDto> getPatient(@PathVariable Long id){
+    public ResponseEntity<PatientDto> get(@PathVariable Long id){
         PatientDto patientDto = patientService.getPatient(id);
         return new ResponseEntity<>(patientDto, HttpStatus.OK);
     }
@@ -75,8 +75,8 @@ public class PatientController {
             responseCode = "200",
             description = "HTTP Status 200 SUCCESS"
     )
-    @PutMapping("{id}/update")
-    public ResponseEntity<PatientDto> updatePatient(
+    @PutMapping("{id}")
+    public ResponseEntity<PatientDto> update(
             @Valid
             @PathVariable Long id, @RequestBody PatientDto patientDto){
         patientDto.setId(id);
@@ -91,8 +91,8 @@ public class PatientController {
             responseCode = "201",
             description = "HTTP Status 201 CREATED"
     )
-    @PostMapping("{id}/delete")
-    public ResponseEntity<String> deletePatient(@PathVariable Long id){
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
         patientService.deletePatient(id);
         return new ResponseEntity<>("Patient Deleted Successfully!", HttpStatus.OK);
     }
@@ -105,7 +105,7 @@ public class PatientController {
             description = "HTTP Status 201 CREATED"
     )
     @GetMapping("{phoneNumberOrEmail}/search")
-    public ResponseEntity<PatientDto> getPatientByPhoneNumberOrEmail(@PathVariable String phoneNumberOrEmail){
+    public ResponseEntity<PatientDto> getByPhoneNumberOrEmail(@PathVariable String phoneNumberOrEmail){
 
         PatientDto patientDto = patientService.getPatientByPhoneNumberOrEmail(phoneNumberOrEmail);
 
