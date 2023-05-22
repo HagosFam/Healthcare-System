@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="billing-and-payment-service:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/billing-and-payment-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/billing-and-payment-service/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient-management-service/src/main/java/com/healthcare/patientmanagement/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/com/healthcare/patientmanagement/controller/PatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/billing-and-payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/billing-and-payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/electronic-health-record-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/electronic-health-record-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insurance-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/insurance-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prescription-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/prescription-management-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,10 +66,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Academic/MIU/Courses/SA/HealthCareSystem/SS/Healthcare-System",
+    "last_opened_file_path": "D:/Academic/MIU/Courses/SA/HealthCareSystem/SS/Healthcare-System/billing-and-payment-service/src/main/resources/META-INF",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.1150748",
     "ruby.rails.projectView.checked": "true",
     "spring.configuration.checksum": "edcd9addc04df72afe9d401e2a6f34ef",
     "vue.rearranger.settings.migration": "true"
@@ -86,7 +104,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.PatientManagementServiceApplication (2)">
+  <component name="RunManager" selected="Spring Boot.BillingAndPaymentServiceApplication (1)">
     <configuration name="AppointmentManagementServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.healthcare.appointment.sa.AppointmentManagementServiceApplication" />
       <module name="appointment-management-service" />
@@ -214,7 +232,7 @@
       <updated>1684730765210</updated>
       <workItem from="1684730766366" duration="8527000" />
       <workItem from="1684740003988" duration="705000" />
-      <workItem from="1684741105371" duration="1465000" />
+      <workItem from="1684741105371" duration="5860000" />
     </task>
     <servers />
   </component>

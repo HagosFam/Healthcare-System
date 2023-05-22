@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.microservice</groupId>
         <artifactId>health-care-microservice</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>billing-and-payment-service</artifactId>
     <name>Archetype - billing-and-payment-service</name>
