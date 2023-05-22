@@ -1,75 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="billing-and-payment-service:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecf8ad4d-2c0f-4098-ad2e-3aecf5c2fe05" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/InsuranceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/model/InsuranceClaim.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/model/enums/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/repository/InsuranceClaimRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/main/java/com/healthcare/insurance/service/InsuranceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insurance-management-service/src/test/java/TestApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/insurance-management-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insurance-management-service/src/main/java/InsuranceApplication.java" beforeDir="false" />
-
-    <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/patient-management-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/PatientManagementServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/controller/PatientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/dto/PatientDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/entity/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/entity/Patient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/EmailAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/ErrorDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/PhoneNumberAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/mapper/AutoPatientMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/repository/PatientRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/service/PatientService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/java/patientmanagementservice/service/impl/PatientServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/resources/application-docker.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient-management-service/src/test/java/patientmanagementservice/PatientManagementServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient-management-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient-management-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/patient-management-service/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="2" />
-  </component>
-  <component name="ProjectId" id="2PqdqDwUBzhjsItnNRBCbAbNvwy" />
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -77,7 +34,13 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2PtWAthNeqX4zhcRXOqgYeooWAD" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2Q8MTsrlDnsY2EE4tZN9jecngfe" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -85,64 +48,130 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.09398496",
-    "project.structure.side.proportion": "0.368356",
-    "spring.configuration.checksum": "393629ef7e273da01206221a9d2da7f3",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.healthcare.insurance.model.enums" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/prescription-management-service/src" />
-      <recent name="$PROJECT_DIR$/patient-management-service/src" />
-      <recent name="$PROJECT_DIR$/notification-service/src" />
-      <recent name="$PROJECT_DIR$/insurance-management-service/src" />
-      <recent name="$PROJECT_DIR$/appointment-management-service/src/test/java" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/electronic-health-record-service" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Spring Boot.InsuranceApplication">
-    <configuration name="TestApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="insurance-management-service" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestApp" />
-      <option name="TEST_OBJECT" value="class" />
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Academic/MIU/Courses/SA/HealthCareSystem/SS/Healthcare-System/billing-and-payment-service/src/main/resources/META-INF&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;53e8103492c4a339e8d2b57cc5f2e0ad&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;edcd9addc04df72afe9d401e2a6f34ef&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
-}]]></component>
-  <component name="RunManager" selected="Spring Boot.Application">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Healthcare-System" />
- 
+}</component>
+  <component name="RubyModuleManagerSettings">
+    <option name="blackListedRootsPaths">
+      <list>
+        <option value="$PROJECT_DIR$" />
+        <option value="$PROJECT_DIR$/electronic-health-record-service" />
+        <option value="$PROJECT_DIR$/appointment-management-service" />
+        <option value="$PROJECT_DIR$/insurance-management-service" />
+        <option value="$PROJECT_DIR$/billing-and-payment-service" />
+        <option value="$PROJECT_DIR$/patient-management-service" />
+        <option value="$PROJECT_DIR$/notification-service" />
+      </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BillingAndPaymentServiceApplication (1)">
+    <configuration name="AppointmentManagementServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.healthcare.appointment.sa.AppointmentManagementServiceApplication" />
+      <module name="appointment-management-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.healthcare.appointment.sa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppointmentManagementServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="appointment-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.billingandpayment.appointment.AppointmentManagementServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.healthcare.billingandpayment.appointment.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppointmentManagementServiceApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="appointment-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.appointment.AppointmentManagementServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.healthcare.appointment.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppointmentManagementServiceApplication (3)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="appointment-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.appointment.AppointmentManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppointmentManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="appointment-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.appointment.sa.AppointmentManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BillingAndPaymentServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="billing-and-payment-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.billingandpayment.BillingAndPaymentServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.healthcare.billingandpayment.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BillingAndPaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="billing-and-payment-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.BillingAndPaymentServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElectronicHealthRecordApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="electronic-health-record-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.miu.ElectronicHealthRecord.ElectronicHealthRecordApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -150,22 +179,31 @@
     <configuration name="InsuranceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="insurance-management-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.insurance.InsuranceApplication" />
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Healthcare-System" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-      
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="appointment-management-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="miu.edu.Application" />
+    <configuration name="PatientManagementServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="patient-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.patientmanagement.PatientManagementServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.healthcare.patientmanagement.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PatientManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="PatientManagementServiceApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="patient-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.healthcare.patientmanagement.PatientManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatientManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="patient-management-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="patientmanagementservice.PatientManagementServiceApplication" />
       <method v="2">
@@ -174,31 +212,25 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestApp" />
+        <item itemvalue="Spring Boot.BillingAndPaymentServiceApplication (1)" />
+        <item itemvalue="Spring Boot.AppointmentManagementServiceApplication (2)" />
+        <item itemvalue="Spring Boot.PatientManagementServiceApplication (1)" />
+        <item itemvalue="Spring Boot.AppointmentManagementServiceApplication (1)" />
+        <item itemvalue="Application.AppointmentManagementServiceApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ecf8ad4d-2c0f-4098-ad2e-3aecf5c2fe05" name="Changes" comment="" />
-      <created>1684188736275</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1684188736275</updated>
-      <workItem from="1684188737428" duration="1475000" />
-      <workItem from="1684272972637" duration="10761000" />
-
       <changelist id="0887504c-0476-4b30-b582-208aaa3ef241" name="Changes" comment="" />
-      <created>1684276723821</created>
+      <created>1684730765210</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1684276723821</updated>
-      <workItem from="1684276726272" duration="1555000" />
-      <workItem from="1684289919525" duration="66000" />
-      <workItem from="1684290010706" duration="325000" />
-      <workItem from="1684293721430" duration="412000" />
-      <workItem from="1684613814175" duration="1602000" />
+      <updated>1684730765210</updated>
+      <workItem from="1684730766366" duration="8527000" />
+      <workItem from="1684740003988" duration="705000" />
+      <workItem from="1684741105371" duration="5860000" />
     </task>
     <servers />
   </component>
@@ -215,8 +247,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

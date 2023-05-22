@@ -3,15 +3,11 @@ package com.healthcare.insurance.service;
 import com.healthcare.insurance.model.InsuranceClaim;
 import com.healthcare.insurance.model.enums.Status;
 import com.healthcare.insurance.repository.InsuranceClaimRepository;
-import com.healthcare.insurance.service.dto.InsuranceClaimRequest;
-import com.healthcare.insurance.service.dto.InsuranceDTOAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
