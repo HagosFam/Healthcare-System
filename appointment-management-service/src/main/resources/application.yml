@@ -1,0 +1,28 @@
+server:
+    port: 8082
+
+spring:
+    application:
+        name: appointment-management-service
+    datasource:
+        password: postgres
+        url: jdbc:postgresql://localhost:2021/postgres
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+
+management:
+    tracing:
+        sampling:
+            probability: 1.0 #100% metrics will be published to zipkin server
