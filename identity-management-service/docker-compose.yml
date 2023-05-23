@@ -1,0 +1,9 @@
+version: '3'
+services:
+  postgres-example:
+    image: postgres
+    container_name: identity-management-db
+    ports:
+      - "2030:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
