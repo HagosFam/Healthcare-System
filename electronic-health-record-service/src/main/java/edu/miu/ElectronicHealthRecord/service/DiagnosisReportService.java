@@ -9,8 +9,8 @@ import edu.miu.ElectronicHealthRecord.repository.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.util.List;
 
+import java.util.List;
 
 @Service
 public class DiagnosisReportService {
@@ -25,43 +25,48 @@ public class DiagnosisReportService {
         this.medicalRecordRepository = medicalRecordRepository;
     }
 
-
+    /** for simulation to check the handshake only **/
     final String url = "http://localhost:8088/prescription/";
     private final MedicalRecordRepository medicalRecordRepository;
 
-    //post
     public DiagnosisReport createDiagnosisReport(DiagnosisReport diagnosisReport){
         Prescription prescription = restTemplate.getForObject(url + diagnosisReport.getPrescriptionId(), Prescription.class);
         prescriptionRepository.save(prescription);
-        Long patientId = diagnosisReport.getPatientId();
-        MedicalRecord medicalRecord = medicalRecordRepository.getReferenceById(patientId);
-        diagnosisReport.setMedicalRecord(medicalRecord);
-        DiagnosisReport savedDiagnosisReport = diagnosisReportRepository.save(diagnosisReport);
 
-        return savedDiagnosisReport;
+        Long patientId = diagnosisReport.getPatientId();
+        MedicalRecord medicalRecord = medicalRecordRepository.findByPatientId(patientId).orElse(null);
+        if(medicalRecord!=null) {
+            diagnosisReport.setMedicalRecord(medicalRecord);
+            DiagnosisReport savedDiagnosisReport = diagnosisReportRepository.save(diagnosisReport);
+            return savedDiagnosisReport;
+        }
+        return null;
     }
     public DiagnosisReport getDiagnosisReportById(Long id) {
-        return diagnosisReportRepository.getReferenceById(id);
+
+         DiagnosisReport diagnosisReport = diagnosisReportRepository.findById(id).orElse(null);
+         return diagnosisReport;
     }
 
-    public List<DiagnosisReport> getAllDiagnosisReports(Long medicalRecordId) {
-        List<DiagnosisReport> list = diagnosisReportRepository.findByMedicalRecordId(medicalRecordId);
+    public List<DiagnosisReport> getAllDiagnosisReports(Long patientId) {
+        List<DiagnosisReport> list = diagnosisReportRepository.findByPatientId(patientId);
         return list;
     }
-    public DiagnosisReport updateDiagnosisReport(Long diagnosisId , DiagnosisReport updateDiagnosisReport) {
+    public DiagnosisReport updateDiagnosisReport(Long diagnosisId , DiagnosisReport diagnosisReport) {
 
-        DiagnosisReport diagnosisReport = diagnosisReportRepository.getById(diagnosisId);
-        Long patientId = diagnosisReport.getPatientId();
-        MedicalRecord medicalRecord = medicalRecordRepository.getReferenceById(patientId);
+        DiagnosisReport updateDiagnosisReport = diagnosisReportRepository.findById(diagnosisId).orElse(null);
+        Long patientId_1 = diagnosisReport.getPatientId();
+        Long patientId_2 =updateDiagnosisReport.getPatientId();
 
-        diagnosisReport.setPatientId(patientId);
-        diagnosisReport.setMedicalRecord(medicalRecord);;
-        diagnosisReport.setDiagnosisCode(updateDiagnosisReport.getDiagnosisCode());
-        diagnosisReport.setPrescriptionId(updateDiagnosisReport.getPrescriptionId());
-        diagnosisReport.setRecommendation(updateDiagnosisReport.getRecommendation());
-        diagnosisReport.setDoctorId(updateDiagnosisReport.getDoctorId());
+if(patientId_2 == patientId_1) {
+    updateDiagnosisReport.setDiagnosisCode(diagnosisReport.getDiagnosisCode());
+    updateDiagnosisReport.setPrescriptionId(diagnosisReport.getPrescriptionId());
+    updateDiagnosisReport.setRecommendation(diagnosisReport.getRecommendation());
+    updateDiagnosisReport.setDoctorId(diagnosisReport.getDoctorId());
+    return diagnosisReportRepository.save(updateDiagnosisReport);
 
-        return diagnosisReportRepository.save(diagnosisReport);
+}
+return null;
     }
     public void deleteDiagnosisReport(Long id) {
         diagnosisReportRepository.deleteById(id);

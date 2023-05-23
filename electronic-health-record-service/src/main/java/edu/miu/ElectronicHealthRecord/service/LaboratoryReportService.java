@@ -1,5 +1,6 @@
 package edu.miu.ElectronicHealthRecord.service;
 
+
 import edu.miu.ElectronicHealthRecord.model.LaboratoryReport;
 import edu.miu.ElectronicHealthRecord.model.MedicalRecord;
 import edu.miu.ElectronicHealthRecord.repository.LaboratoryReportRepository;
@@ -14,37 +15,40 @@ public class LaboratoryReportService {
 
     private final LaboratoryReportRepository laboratoryReportRepository;
     private final MedicalRecordRepository medicalRecordRepository;
-@Autowired
-public LaboratoryReportService(LaboratoryReportRepository laboratoryReportRepository,MedicalRecordRepository medicalRecordRepository){
+    @Autowired
+    public LaboratoryReportService(LaboratoryReportRepository laboratoryReportRepository,MedicalRecordRepository medicalRecordRepository){
     this.laboratoryReportRepository = laboratoryReportRepository;
     this.medicalRecordRepository =medicalRecordRepository;
 }
     public LaboratoryReport createLaboratoryReport(LaboratoryReport laboratoryReport) {
-       // LaboratoryReport laboratoryReport = LaboratoryReportDtoAdapter.fromDto(laboratoryReportDto);
         Long patientId = laboratoryReport.getPatientId();
-        MedicalRecord medicalRecord = medicalRecordRepository.getReferenceById(patientId);
-        laboratoryReport.setMedicalRecord(medicalRecord);
-        LaboratoryReport savedLaboratoryReport = laboratoryReportRepository.save(laboratoryReport);
-        return savedLaboratoryReport;
+        MedicalRecord  medicalRecord = medicalRecordRepository.findByPatientId(patientId).orElse(null);
+        if(medicalRecord != null) {
+            laboratoryReport.setMedicalRecord(medicalRecord);
+            LaboratoryReport savedLaboratoryReport = laboratoryReportRepository.save(laboratoryReport);
+            return savedLaboratoryReport;
+        }
+        return null;
     }
 
     public LaboratoryReport getLaboratoryReportById(Long id) {
-        LaboratoryReport laboratoryReport = laboratoryReportRepository.getReferenceById(id);
+        LaboratoryReport laboratoryReport = laboratoryReportRepository.findById(id).orElse(null);
     return laboratoryReport;
     }
-
-    public List<LaboratoryReport> getAllLaboratoryReports(Long medicalRecordId) {
-      List<LaboratoryReport> laboratoryReportList =  laboratoryReportRepository.findByMedicalRecordId(medicalRecordId);
-    return laboratoryReportList;
-    }
-
-    public LaboratoryReport updateLaboratoryReport(Long laboratoryId, LaboratoryReport laboratoryReportDto) {
-        LaboratoryReport laboratoryReport = laboratoryReportRepository.getById(laboratoryId);
-        laboratoryReport.setTestResult(laboratoryReportDto.getTestResult());
-        laboratoryReport.setTestType(laboratoryReportDto.getTestType());
-        //laboratoryReport.setMedicalRecord(MedicalRecordDtoAdapter.fromDto(laboratoryReportDto.getMedicalRecord()));
-        LaboratoryReport savedLaboratoryReport = laboratoryReportRepository.save(laboratoryReport);
-          return savedLaboratoryReport;
+        public List<LaboratoryReport> getAllLaboratoryReports(Long patientId) {
+            List<LaboratoryReport> list = laboratoryReportRepository.findByPatientId(patientId);
+            return list;
+        }
+    public LaboratoryReport updateLaboratoryReport(Long laboratoryId, LaboratoryReport laboratoryReport) {
+        LaboratoryReport updatelaboratoryReport = laboratoryReportRepository.getById(laboratoryId);
+        if (updatelaboratoryReport.getPatientId() == laboratoryReport.getPatientId()) {
+            updatelaboratoryReport.setTestResult(laboratoryReport.getTestResult());
+            updatelaboratoryReport.setTestType(laboratoryReport.getTestType());
+            updatelaboratoryReport.setMedicalRecord(laboratoryReport.getMedicalRecord());
+            LaboratoryReport savedLaboratoryReport = laboratoryReportRepository.save(laboratoryReport);
+            return savedLaboratoryReport;
+        }
+        return null;
     }
 
     public void deletePatientLaboratoryReport(Long id) {

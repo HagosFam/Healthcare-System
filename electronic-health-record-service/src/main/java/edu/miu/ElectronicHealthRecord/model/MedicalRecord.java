@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,10 +18,10 @@ public class MedicalRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long patientId;
-    @OneToMany(mappedBy = "medicalRecord",fetch = FetchType.EAGER)
-    private List<DiagnosisReport> diagnosisReports = new ArrayList<>();
-    @OneToMany(mappedBy = "medicalRecord",fetch = FetchType.EAGER)
-    private List<LaboratoryReport> laboratoryReports = new ArrayList<>();
+    @OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<DiagnosisReport> diagnosisReports;
+    @OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<LaboratoryReport> laboratoryReports;
     @ElementCollection()
     @JoinTable(name = "Patient_Allergies")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)

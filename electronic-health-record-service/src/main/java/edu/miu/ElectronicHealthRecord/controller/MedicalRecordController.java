@@ -1,11 +1,13 @@
 package edu.miu.ElectronicHealthRecord.controller;
 
 import edu.miu.ElectronicHealthRecord.model.MedicalRecord;
+import edu.miu.ElectronicHealthRecord.repository.PatientRepository;
 import edu.miu.ElectronicHealthRecord.service.MedicalRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Set;
 
@@ -14,9 +16,11 @@ import java.util.Set;
 public class MedicalRecordController {
 
     private final MedicalRecordService medicalRecordService;
+    private final PatientRepository patientRepository;
     @Autowired
-    public MedicalRecordController(MedicalRecordService medicalRecordService){
+    public MedicalRecordController(MedicalRecordService medicalRecordService, PatientRepository patientRepository){
         this.medicalRecordService= medicalRecordService;
+        this.patientRepository = patientRepository;
     }
 
     @GetMapping("/{medicalRecordId}")
@@ -49,36 +53,41 @@ public class MedicalRecordController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).
                 body("There is no medical record with ID " + medicalRecordId);
     }
-    @PostMapping("/")
-    public ResponseEntity<?> createMedicalRecord(@RequestParam Long patientId){
-        MedicalRecord medicalRecordDto = medicalRecordService.createMedicalRecordByPatientId(patientId);
-        if(medicalRecordDto == null) {
-            String message = "Medical Record Already Exists for patient with ID" + patientId;
-            ResponseEntity<String> response = new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    @PostMapping("/{patientId}")
+    public ResponseEntity<?> createMedicalRecord(@PathVariable Long patientId){
+        MedicalRecord newMedicalRecord = medicalRecordService.createMedicalRecord(patientId);
+        if(newMedicalRecord == null && patientRepository.findByPatientId(patientId).isPresent()) {
+            String message = "The patient with ID " + patientId + " , has been registered before" ;
+            ResponseEntity<String> response = new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
             return response;
         }
-        if(medicalRecordDto != null){
-            ResponseEntity<MedicalRecord> response = new ResponseEntity<>(medicalRecordDto, HttpStatus.CREATED);
-            return response;
-        }
-        else
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create medical record");
+        if(newMedicalRecord == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The patient requested is not registered,yet.");
+
+        ResponseEntity<MedicalRecord> response = new ResponseEntity<>(newMedicalRecord, HttpStatus.CREATED);
+        return response;
     }
+
     @PostMapping("/allergy/{medicalRecordId}")
-    public ResponseEntity<?> addPatientAllergy(@PathVariable Long medicalRecordId,@RequestParam String allergy){
+    public ResponseEntity<?> addPatientAllergy(@PathVariable Long medicalRecordId,@RequestBody List<String> allergy){
         Set<String> allergies = medicalRecordService.addAllergy(medicalRecordId,allergy);
-        if(allergies.contains(allergy))
+       int count=0;
+       for(String element: allergy){
+          if(allergies.contains(element));
+             count++;
+       }
+        if(count == allergy.size())
             return ResponseEntity.ok().body(allergies);
         else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add the requested allergy");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Failed to add the requested allergy");
 
     }
 
-    @PatchMapping("/{medicalRecordId}")
-    public ResponseEntity<?> updatePatientId(@PathVariable Long medicalRecordId, @RequestParam Long patientId){
-        MedicalRecord medicalRecord = medicalRecordService.editMedicalRecordPatientId(medicalRecordId,patientId);
-        if(medicalRecordService.findMedicalRecordById(medicalRecordId).getPatientId() == patientId){
-            return ResponseEntity.ok().body(medicalRecord);
+    @PutMapping("/{medicalRecordId}")
+    public ResponseEntity<?> updateMedicalRecord(@PathVariable Long medicalRecordId, @RequestBody MedicalRecord medicalRecord){
+        MedicalRecord newMedicalRecord = medicalRecordService.updateMedicalRecord(medicalRecordId,medicalRecord);
+        if(medicalRecordService.findMedicalRecordById(medicalRecordId) == newMedicalRecord) {
+            return ResponseEntity.ok().body(newMedicalRecord);
         }
         else
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("PatientId update failed");
@@ -92,19 +101,19 @@ public class MedicalRecordController {
                 return ResponseEntity.ok().body("Medical record deleted from the system");
             }
             else
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File deletion failed");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("File has not been deleted");
         }
         return ResponseEntity.
                 status(HttpStatus.BAD_REQUEST).
                 body("the requested medical record with Id " + medicalRecordId + " is not in the system");
     }
     @DeleteMapping("/allergy/{medicalRecordId}")
-    public ResponseEntity<String> deleteAllergy(@PathVariable Long medicalRecordId, @RequestParam String allergy){
-        medicalRecordService.deleteSpecificAllergy(medicalRecordId,allergy);
-        if(!medicalRecordService.getAllergyList(medicalRecordId).contains(allergy))
+    public ResponseEntity<String> deleteAllergy(@PathVariable Long medicalRecordId){
+        medicalRecordService.deleteAllergy(medicalRecordId);
+        if(medicalRecordService.getAllergyList(medicalRecordId).isEmpty())
             return ResponseEntity.ok().body("Requested Allergy was deleted");
         else
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete the requested allergy");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Failed to delete the requested allergy");
 }
 
 
