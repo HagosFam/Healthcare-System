@@ -14,7 +14,6 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 import { AppComponent } from './app.component';
 import { AppointmentHomeComponent } from './appointment-service/appointment-home/appointment-home.component';
 import { RouterModule } from '@angular/router';
@@ -22,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CreateAppointmentComponent } from './appointment-service/create-appointment/create-appointment.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AppointmentMgtComponent } from './appointment-service/appointment-mgt/appointment-mgt.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BillingPaymentManagementComponent } from './billing-payment-service/billing-payment-management/billing-payment-management.component';
 import { CreateBillingPaymentComponent } from './billing-payment-service/create-billing-payment/create-billing-payment.component';
@@ -34,12 +33,15 @@ import { PatientManagementComponent } from './patient-service/patient-management
 import { CreatePatientComponent } from './patient-service/create-patient/create-patient.component';
 import { PrescriptionManagementComponent } from './prescription-service/prescription-management/prescription-management.component';
 import { CreatePrescriptionComponent } from './prescription-service/create-prescription/create-prescription.component';
+import { ToastrModule } from 'ngx-toastr';
+import { CreateDignosisComponent } from './emr-service/create-dignosis/create-dignosis.component';
+import { LaboratoryReportComponent } from './emr-service/laboratory-report/laboratory-report.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
     AppointmentHomeComponent, 
-    AppointmentMgtComponent, CreateAppointmentComponent, HomePageComponent, BillingPaymentManagementComponent, CreateBillingPaymentComponent, EmrManagementComponent, CreateEmrComponent, InsuranceManagementComponent, CreateInsuranceComponent, PatientManagementComponent, CreatePatientComponent, PrescriptionManagementComponent, CreatePrescriptionComponent],
+    AppointmentMgtComponent, CreateAppointmentComponent, HomePageComponent, BillingPaymentManagementComponent, CreateBillingPaymentComponent, EmrManagementComponent, CreateEmrComponent, InsuranceManagementComponent, CreateInsuranceComponent, PatientManagementComponent, CreatePatientComponent, PrescriptionManagementComponent, CreatePrescriptionComponent, CreateDignosisComponent, LaboratoryReportComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -57,8 +59,7 @@ import { CreatePrescriptionComponent } from './prescription-service/create-presc
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
-
+    ToastrModule.forRoot(),
 
     RouterModule,
     AppRoutingModule,

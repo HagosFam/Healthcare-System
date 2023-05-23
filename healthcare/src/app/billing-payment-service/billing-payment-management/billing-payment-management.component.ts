@@ -13,7 +13,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class BillingPaymentManagementComponent implements OnInit {
   bills: Bill[] = [];
-  displayedColumns: string[] = ['id', 'patient', 'date', 'doctor','roomNumber', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'patientId', 'servicesRendered','paymentId','amount', 'paymentDate', 'edit', 'delete'];
+
   @ViewChild(MatSort)
   sort!: MatSort;
   @ViewChild(MatPaginator)
@@ -43,24 +44,6 @@ export class BillingPaymentManagementComponent implements OnInit {
     );
   }
 
-  createBill(): void {
-    const newBill: Bill = {
-      id: null, // Set to null or omit if generating ID on the server
-      patientId: 'patient123',
-      servicesRendered: 'Service 1, Service 2',
-      payment: []
-    };
-
-    this.billService.createBill(newBill).subscribe(
-      (bill: Bill) => {
-        console.log('New bill created:', bill);
-        this.loadBills(); // Refresh the bill list after creating a new bill
-      },
-      (error) => {
-        console.error('Error occurred while creating bill:', error);
-      }
-    );
-  }
 
   updateBill(bill: Bill): void {
     this.billService.updateBill(bill).subscribe(
@@ -98,5 +81,12 @@ export class BillingPaymentManagementComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  editBilling(data:any) {
+
+  }
+
+  deleteBilling(data:any) {
+
   }
 }

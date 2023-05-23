@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { appointment } from '../models/appointment';
 import { AppointmentService } from '../service/appointment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-appointment-mgt',
@@ -19,7 +20,7 @@ export class AppointmentMgtComponent {
   paginator!: MatPaginator;
   dataSource: any
 
-  constructor(private appointmentService:AppointmentService) {  }
+  constructor(private appointmentService:AppointmentService, private toastr:ToastrService) {  }
   ngOnInit(){
     this.fetchAllAppointments();
   }
@@ -27,6 +28,7 @@ export class AppointmentMgtComponent {
   fetchAllAppointments() {
     this.appointmentService.getAppointments().subscribe((res) => {
       if (res!=null) {
+        this.toastr.success('All appointments loaded');
         this.appointment = res
         this.dataSource = new MatTableDataSource(this.appointment);
         console.log(this.dataSource);
@@ -60,11 +62,11 @@ export class AppointmentMgtComponent {
       if(confirm("Are you sure you want to delete this data?")){
 this.appointmentService.deleteAppointment(appointmentId).subscribe(
         () => {
-          alert('Appointment deleted successfully');
+          this.toastr.error("Appointment deleted successfully! ");
           // Optionally, you can perform any additional logic after deleting the appointment
         },
         (error: any) => {
-          console.error('Error deleting appointment:', error);
+          this.toastr.error("Error in deleting appointment");
           // Handle any error that occurred during the deletion of the appointment
         }
       );
