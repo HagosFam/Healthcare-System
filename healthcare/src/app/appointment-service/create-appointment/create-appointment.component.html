@@ -1,0 +1,45 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">  
+        <div class="card-body">
+        <h5 class="card-title">
+            Create Appointment
+        </h5>
+    </div>
+ 
+    <form [formGroup]="appointmentForm" (ngSubmit)="createAppointment()">
+  <label for="patientId">Patient ID</label>
+  <input type="text" id="patientId" formControlName="patientId">
+
+  <label for="appointmentDate">Appointment Date</label>
+  <input type="text" id="appointmentDate" formControlName="appointmentDate">
+
+  <label for="doctorId">Doctor ID</label>
+  <input type="text" id="doctorId" formControlName="doctorId">
+
+  <label for="roomNumber">Room Number</label>
+  <input type="text" id="roomNumber" formControlName="roomNumber">
+
+  <button type="submit">Create Appointment</button>
+</form>
+ 
+    
+
+    </div>
+    <div class="col-md-6">
+      <div class="card" >
+        <img src="../../../assets/hero-page.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Elctronic Health Care Management System</h5> <br>
+          <h6 class="card-title">Ado Health Care Hospital</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Learn more</a>
+        </div>
+      </div>
+    </div>
+    <br>
+</div>
+</div>
+
+

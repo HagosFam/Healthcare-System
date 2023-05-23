@@ -1,0 +1,75 @@
+<mat-toolbar color="primary" class="header fixed-top" >
+  <span class="logo" color="black">Health Care System</span>
+  <span class="spacer"></span>
+  <div class="links">
+    <a mat-button routerLink="/">Home</a>
+    
+    <div class="dropdown">
+      <a mat-button routerLink="#">Patient Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/">Create Patient</a>
+        <a mat-button routerLink="/about">Patient Mgt</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a mat-button routerLink="#">Appointment Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/createAppointment">Create Appointment</a>
+        <a mat-button routerLink="/appointment">Appointment Mgt</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a mat-button routerLink="#">EMR Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/">Create EMR</a>
+        <a mat-button routerLink="/about">EMR Mgt</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a mat-button routerLink="#">Prescription Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/">Create Prescription</a>
+        <a mat-button routerLink="/about">Prescription Mgt</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a mat-button routerLink="#">Insurance Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/">Create Insurance</a>
+        <a mat-button routerLink="/about">Insurance Mgt</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a mat-button routerLink="#">Billing & payment Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/createbilling">Create Billing & payment</a>
+        <a mat-button routerLink="/billingmgt">Billing & payment Mgt</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a mat-button routerLink="#">User Service</a>
+      <div class="dropdown-content">
+        <a mat-button routerLink="/">Create User</a>
+        <a mat-button routerLink="/about">Users Mgt</a>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+<main style="padding: 5%;" class="content">
+   <router-outlet></router-outlet> 
+</main>
+
+<mat-toolbar color="primary" class="footer fixed-bottom">
+  <span class="copyright">
+     The Healthcare Microservice Development Team <br>
+    &copy;  2023  All rights reserved. 
+   
+  </span>
+</mat-toolbar>
