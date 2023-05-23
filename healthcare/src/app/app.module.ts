@@ -24,12 +24,22 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AppointmentMgtComponent } from './appointment-service/appointment-mgt/appointment-mgt.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BillingPaymentManagementComponent } from './billing-payment-service/billing-payment-management/billing-payment-management.component';
+import { CreateBillingPaymentComponent } from './billing-payment-service/create-billing-payment/create-billing-payment.component';
+import { EmrManagementComponent } from './emr-service/emr-management/emr-management.component';
+import { CreateEmrComponent } from './emr-service/create-emr/create-emr.component';
+import { InsuranceManagementComponent } from './insurance-service/insurance-management/insurance-management.component';
+import { CreateInsuranceComponent } from './insurance-service/create-insurance/create-insurance.component';
+import { PatientManagementComponent } from './patient-service/patient-management/patient-management.component';
+import { CreatePatientComponent } from './patient-service/create-patient/create-patient.component';
+import { PrescriptionManagementComponent } from './prescription-service/prescription-management/prescription-management.component';
+import { CreatePrescriptionComponent } from './prescription-service/create-prescription/create-prescription.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
     AppointmentHomeComponent, 
-    AppointmentMgtComponent, CreateAppointmentComponent, HomePageComponent],
+    AppointmentMgtComponent, CreateAppointmentComponent, HomePageComponent, BillingPaymentManagementComponent, CreateBillingPaymentComponent, EmrManagementComponent, CreateEmrComponent, InsuranceManagementComponent, CreateInsuranceComponent, PatientManagementComponent, CreatePatientComponent, PrescriptionManagementComponent, CreatePrescriptionComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

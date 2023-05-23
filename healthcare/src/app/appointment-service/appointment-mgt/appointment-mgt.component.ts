@@ -28,16 +28,12 @@ export class AppointmentMgtComponent {
     this.appointmentService.getAppointments().subscribe((res) => {
       if (res!=null) {
         this.appointment = res
-        console.log('this are the marchent branch')
-        console.log(this.appointment);
         this.dataSource = new MatTableDataSource(this.appointment);
         console.log(this.dataSource);
         this.dataSource.sort = this.sort;
         setTimeout(() => this.dataSource.paginator = this.paginator);
       } else {
-      
-        console.log(res['statusMessage']);
-        console.log(res['statusCode']);
+        console.log("Can's save data");
       }
     }, (err) => {
       console.log("error occured")
