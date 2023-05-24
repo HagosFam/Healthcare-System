@@ -51,6 +51,6 @@ spring:
         - id: identity-management-service
           uri: lb://identity-management-service
           predicates:
-            - Path=/api/v1/users
+            - Path=/api/v1/identity/**
           filters:
             - AuthenticationFilter
