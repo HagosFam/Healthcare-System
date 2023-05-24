@@ -36,12 +36,17 @@ import { CreatePrescriptionComponent } from './prescription-service/create-presc
 import { ToastrModule } from 'ngx-toastr';
 import { CreateDignosisComponent } from './emr-service/create-dignosis/create-dignosis.component';
 import { LaboratoryReportComponent } from './emr-service/laboratory-report/laboratory-report.component';
+import { MedicalReportComponent } from './emr-service/medical-record/medical-record.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
     AppointmentHomeComponent, 
-    AppointmentMgtComponent, CreateAppointmentComponent, HomePageComponent, BillingPaymentManagementComponent, CreateBillingPaymentComponent, EmrManagementComponent, CreateEmrComponent, InsuranceManagementComponent, CreateInsuranceComponent, PatientManagementComponent, CreatePatientComponent, PrescriptionManagementComponent, CreatePrescriptionComponent, CreateDignosisComponent, LaboratoryReportComponent],
+    AppointmentMgtComponent, CreateAppointmentComponent, HomePageComponent, 
+    BillingPaymentManagementComponent, CreateBillingPaymentComponent, EmrManagementComponent,
+     CreateEmrComponent, InsuranceManagementComponent, CreateInsuranceComponent, PatientManagementComponent, 
+     CreatePatientComponent, PrescriptionManagementComponent, CreatePrescriptionComponent, CreateDignosisComponent,
+      LaboratoryReportComponent, MedicalReportComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

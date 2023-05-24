@@ -21,6 +21,7 @@ export class AppointmentMgtComponent {
   dataSource: any
 
   constructor(private appointmentService:AppointmentService, private toastr:ToastrService) {  }
+  
   ngOnInit(){
     this.fetchAllAppointments();
   }
