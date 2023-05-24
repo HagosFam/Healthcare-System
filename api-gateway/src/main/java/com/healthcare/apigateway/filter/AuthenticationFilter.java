@@ -3,6 +3,8 @@ package com.healthcare.apigateway.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.healthcare.apigateway.util.JwtUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +26,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     @Autowired
     private JwtUtil jwtUtil;
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
+
     public AuthenticationFilter() {
         super(Config.class);
     }
@@ -33,6 +37,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
         return ((exchange, chain) -> {
             if (validator.isSecured.test(exchange.getRequest())) {
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+
+                    logger.error("Missing authorization header: remote address={}",exchange.getRequest().getRemoteAddress());
+
                     return handleUnauthorizedAccess(exchange.getResponse(), "Missing authorization header");
                 }
 
@@ -43,6 +50,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 try {
                     jwtUtil.validateToken(authHeader);
                 } catch (Exception e) {
+
+                    logger.error(e.getMessage());
+
                     return handleUnauthorizedAccess(exchange.getResponse(), "Unauthorized access");
                 }
             }

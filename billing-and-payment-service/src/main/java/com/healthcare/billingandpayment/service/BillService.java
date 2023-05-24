@@ -79,10 +79,15 @@ public class BillService implements IBillService {
 
     @Override
     public BillDto update(long id, BillDto billDto) {
+        try {
+            logger.info("Bill update: {}/{}", id, billDto);
 
-        logger.info("Bill update: {}/{}",id, billDto);
-
-        var bill = billRepo.update(id, BillAdapter.getBillFromDto(billDto));
-        return BillAdapter.getDtoFromBill(bill);
+            var bill = billRepo.update(id, BillAdapter.getBillFromDto(billDto));
+            return BillAdapter.getDtoFromBill(bill);
+        }
+        catch(Exception ex){
+            logger.error("Bill not found:  {}", id);
+        }
+        return null;
     }
 }
