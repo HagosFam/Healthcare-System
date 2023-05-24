@@ -7,34 +7,32 @@ import java.util.List;
 
 public class AppointmentAdapter {
     public static AppointmentDto getAppointmentDTO(Appointment appointment) {
-        AppointmentDto appointmentDto = new AppointmentDto();
+        AppointmentDto appointmentDto = AppointmentDto.builder()
+                .id(appointment.getId())
+                .date(appointment.getDate())
+                .roomNumber(appointment.getRoomNumber())
+                .build();
 
-        appointmentDto.setAppointmentId(appointment.getAppointmentId());
-        appointmentDto.setAppointmentDate(appointment.getAppointmentDate());
-        appointmentDto.setProviderId(appointment.getProviderId());
-        appointmentDto.setPatientId(appointment.getPatientId());
-        appointmentDto.setRoomNumber(appointment.getRoomNumber());
         return appointmentDto;
     }
 
     public static Appointment getAppointment(AppointmentDto appointmentDto) {
-        Appointment appointment = new Appointment();
+        Appointment appointment = Appointment.builder()
+                .id(appointmentDto.getId())
+                .patientId(appointmentDto.getPatient().getId())
+                .date(appointmentDto.getDate())
+                .providerId(appointmentDto.getProvider().getId())
+                .roomNumber(appointmentDto.getRoomNumber())
+                .build();
 
-        appointment.setAppointmentId(appointmentDto.getAppointmentId());
-        appointment.setAppointmentDate(appointmentDto.getAppointmentDate());
-        appointment.setProviderId(appointmentDto.getProviderId());
-        appointment.setPatientId(appointmentDto.getPatientId());
-        appointment.setRoomNumber(appointmentDto.getRoomNumber());
         return appointment;
     }
 
-    public static List<AppointmentDto> getListAppointmentDTO(List<Appointment> appointmentList) {
+    public static AppointmentsDto getListAppointmentDTO(List<Appointment> appointmentList) {
         List<AppointmentDto> appointmentDtos = new ArrayList<>();
         for (Appointment list : appointmentList) {
             appointmentDtos.add(getAppointmentDTO(list));
         }
-        return appointmentDtos;
+        return new AppointmentsDto(appointmentDtos);
     }
-
-
 }

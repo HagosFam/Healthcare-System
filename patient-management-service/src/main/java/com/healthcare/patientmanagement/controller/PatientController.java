@@ -2,9 +2,9 @@ package com.healthcare.patientmanagement.controller;
 
 import com.healthcare.patientmanagement.dto.PatientDto;
 import com.healthcare.patientmanagement.service.PatientService;
-import com.healthcare.patientmanagement.util.FeignIdentityManagementServiceUtil;
-import com.healthcare.patientmanagement.util.Role;
-import com.healthcare.patientmanagement.util.User;
+import com.healthcare.patientmanagement.feignutil.FeignIdentityManagementServiceUtil;
+import com.healthcare.patientmanagement.dto.Role;
+import com.healthcare.patientmanagement.dto.User;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,8 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +33,6 @@ public class PatientController {
 
     private PatientService patientService;
 
-    private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
-
     @Operation(
             summary = "Create Patient REST API",
             description = "Create Patient REST API is used to save patient in a database"
@@ -54,15 +50,6 @@ public class PatientController {
         log.info("Patient create: {}", patientDto);
 
         PatientDto patient = patientService.createPatient(patientDto);
-
-        User user = new User(
-                patient.getEmail(),
-                patient.getFirstName(),
-                patient.getLastName(),
-                "1234",
-                Role.PATIENT
-        );
-        identityManagementServiceUtil.save(user);
 
         return new ResponseEntity<>(patient, HttpStatus.CREATED);
     }
@@ -91,7 +78,7 @@ public class PatientController {
             description = "HTTP Status 200 OK"
     )
     @GetMapping("{id}")
-    public ResponseEntity<PatientDto> get(@PathVariable Long id){
+    public ResponseEntity<PatientDto> getById(@PathVariable Long id){
         log.info("Patient get: {}", id);
 
         PatientDto patientDto = patientService.getPatient(id);

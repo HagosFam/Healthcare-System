@@ -2,9 +2,12 @@ package com.healthcare.patientmanagement.service.impl;
 
 import com.healthcare.patientmanagement.controller.PatientController;
 import com.healthcare.patientmanagement.dto.PatientDto;
+import com.healthcare.patientmanagement.dto.Role;
+import com.healthcare.patientmanagement.dto.User;
 import com.healthcare.patientmanagement.entity.Patient;
 import com.healthcare.patientmanagement.exception.EmailAlreadyExistsException;
 import com.healthcare.patientmanagement.exception.PhoneNumberAlreadyExistsException;
+import com.healthcare.patientmanagement.feignutil.FeignIdentityManagementServiceUtil;
 import com.healthcare.patientmanagement.mapper.AutoPatientMapper;
 import com.healthcare.patientmanagement.service.PatientService;
 import lombok.AllArgsConstructor;
@@ -25,6 +28,8 @@ import java.util.stream.Collectors;
 public class PatientServiceImpl implements PatientService {
 
     private PatientRepository patientRepository;
+
+    private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
 
     @Override
     public PatientDto getPatient(Long id) {
@@ -66,14 +71,27 @@ public class PatientServiceImpl implements PatientService {
         log.info("Patient create: {}", patientDto);
 
         if (patientRepository.getPatientByPhoneNumber(patientDto.getPhoneNumber()).isPresent()){
-            throw new PhoneNumberAlreadyExistsException("Phone Number Already Exists!");
+            log.info("Phone number already exists, {}", patientDto.getPhoneNumber());
+            throw new PhoneNumberAlreadyExistsException("Phone number already exists!");
         }
 
         if (patientRepository.getPatientByEmail(patientDto.getEmail()).isPresent()){
-            throw  new EmailAlreadyExistsException("Email Already Exists!");
+            log.info("Email already exists, {}", patientDto.getEmail());
+            throw  new EmailAlreadyExistsException("Email already exists!");
         }
         Patient newPatient = AutoPatientMapper.MAPPER.mapToPatient(patientDto);
         Patient savedPatient = patientRepository.save(newPatient);
+
+        User user = new User(
+                savedPatient.getId(),
+                savedPatient.getEmail(),
+                savedPatient.getFirstName(),
+                savedPatient.getLastName(),
+                "1234",
+                Role.PATIENT
+        );
+        identityManagementServiceUtil.save(user);
+
         return AutoPatientMapper.MAPPER.mapToPatientDto(savedPatient);
     }
 

@@ -40,6 +40,4 @@ public class AppointmentCommandController {
         appointmentCommandService.cancelAppointment(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }

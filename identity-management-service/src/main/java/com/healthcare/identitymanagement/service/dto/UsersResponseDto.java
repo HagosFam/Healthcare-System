@@ -1,11 +1,12 @@
 package com.healthcare.identitymanagement.service.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UsersDto {
-    public List<UserResponseDto> users;
+public class UsersResponseDto {
+    public List<UserResponseDto> users = new ArrayList<>();
 
-    public UsersDto(List<UserResponseDto> users){
+    public UsersResponseDto(List<UserResponseDto> users){
         this.users = users;
     }
 

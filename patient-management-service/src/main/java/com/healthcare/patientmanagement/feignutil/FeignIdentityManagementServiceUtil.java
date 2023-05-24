@@ -1,5 +1,6 @@
-package com.healthcare.patientmanagement.util;
+package com.healthcare.patientmanagement.feignutil;
 
+import com.healthcare.patientmanagement.dto.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,13 +1,14 @@
 package com.healthcare.identitymanagement.service;
 
 import com.healthcare.identitymanagement.config.CustomUserDetails;
+import com.healthcare.identitymanagement.domain.Role;
 import com.healthcare.identitymanagement.domain.User;
 import com.healthcare.identitymanagement.repository.UserRepository;
 import com.healthcare.identitymanagement.service.adapter.UserRequestAdapter;
 import com.healthcare.identitymanagement.service.adapter.UserResponseAdapter;
 import com.healthcare.identitymanagement.service.dto.UserRequestDto;
 import com.healthcare.identitymanagement.service.dto.UserResponseDto;
-import com.healthcare.identitymanagement.service.dto.UsersDto;
+import com.healthcare.identitymanagement.service.dto.UsersResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,7 +51,11 @@ public class UserService implements UserDetailsService {
         userRepository.deleteAll();
     }
 
-    public UsersDto findAll() {
+    public UsersResponseDto findAll() {
         return UserResponseAdapter.getUserResponseDtosFromUsers(userRepository.findAll());
+    }
+
+    public UsersResponseDto findByRole(Role role) {
+        return UserResponseAdapter.getUserResponseDtosFromUsers(userRepository.findByRole(role));
     }
 }

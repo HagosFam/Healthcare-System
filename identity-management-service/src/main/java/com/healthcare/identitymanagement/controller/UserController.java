@@ -1,5 +1,6 @@
 package com.healthcare.identitymanagement.controller;
 
+import com.healthcare.identitymanagement.domain.Role;
 import com.healthcare.identitymanagement.service.UserService;
 import com.healthcare.identitymanagement.service.dto.UserRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,14 @@ public class UserController {
     @GetMapping("{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Long id){
         var user = userService.findById(id);
+        if(user != null)
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findByRole(@RequestParam("role") Role role){
+        var user = userService.findByRole(role);
         if(user != null)
             return new ResponseEntity<>(user, HttpStatus.OK);
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
