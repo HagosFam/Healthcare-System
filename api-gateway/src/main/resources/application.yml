@@ -34,6 +34,20 @@ spring:
 #          filters:
 #            - AuthenticationFilter
 
+        - id: prescription-management-service
+          uri: lb://prescription-management-service
+          predicates:
+            - Path=/api/v1/prescriptions/**
+        #          filters:
+        #            - AuthenticationFilter
+
+        - id: electronic-health-record-service
+          uri: lb://electronic-health-record-service
+          predicates:
+            - Path=/api/v1/medicalrecord/**
+        #          filters:
+        #            - AuthenticationFilter
+
         - id: identity-management-service
           uri: lb://identity-management-service
           predicates:

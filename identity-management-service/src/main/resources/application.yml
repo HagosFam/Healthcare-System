@@ -20,11 +20,3 @@ spring:
   sql:
     init:
       mode: always
-
-#server:
-#  port: 9898
-#
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/

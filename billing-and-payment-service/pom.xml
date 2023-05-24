@@ -7,7 +7,7 @@
         <version>1.0</version>
     </parent>
     <artifactId>billing-and-payment-service</artifactId>
-    <name>Archetype - billing-and-payment-service</name>
+    <name>billing-and-payment-service</name>
     <url>http://maven.apache.org</url>
     <build>
         <plugins>

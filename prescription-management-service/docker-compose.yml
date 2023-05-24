@@ -1,0 +1,9 @@
+version: '3'
+services:
+  postgres-example:
+    image: postgres
+    container_name: prescription-management-db
+    ports:
+      - "2024:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
