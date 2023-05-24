@@ -2,6 +2,10 @@ package com.healthcare.patientmanagement.controller;
 
 import com.healthcare.patientmanagement.dto.PatientDto;
 import com.healthcare.patientmanagement.service.PatientService;
+import com.healthcare.patientmanagement.util.FeignIdentityManagementServiceUtil;
+import com.healthcare.patientmanagement.util.Role;
+import com.healthcare.patientmanagement.util.User;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +27,11 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientController {
 
+    private static final String SERVICE_PATIENT = "servicePatient";
+
     private PatientService patientService;
+
+    private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
 
     @Operation(
             summary = "Create Patient REST API",
@@ -34,11 +42,22 @@ public class PatientController {
             description = "HTTP Status 201 CREATED"
     )
     @PostMapping
-    public ResponseEntity<PatientDto> create(
+    @CircuitBreaker(name = SERVICE_PATIENT, fallbackMethod = "servicePatientFallback")
+    public ResponseEntity<?> create(
             @Valid
             @RequestBody PatientDto patientDto){
-        PatientDto savedPatient = patientService.createPatient(patientDto);
-        return new ResponseEntity<>(savedPatient, HttpStatus.CREATED);
+        PatientDto patient = patientService.createPatient(patientDto);
+
+        User user = new User(
+                patient.getEmail(),
+                patient.getFirstName(),
+                patient.getLastName(),
+                "1234",
+                Role.PATIENT
+        );
+        identityManagementServiceUtil.save(user);
+
+        return new ResponseEntity<>(patient, HttpStatus.CREATED);
     }
     @Operation(
             summary = "Get All Patients REST API",
@@ -110,5 +129,10 @@ public class PatientController {
         PatientDto patientDto = patientService.getPatientByPhoneNumberOrEmail(phoneNumberOrEmail);
 
         return new ResponseEntity<>(patientDto, HttpStatus.OK);
+    }
+
+    //Fallback
+    public ResponseEntity<?> servicePatientFallback(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
