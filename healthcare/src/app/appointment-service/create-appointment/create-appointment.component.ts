@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { appointment } from '../models/appointment';
 import { AppointmentService } from '../service/appointment.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-create-appointment',
@@ -20,7 +22,7 @@ export class CreateAppointmentComponent {
   });
   
 
-  constructor(private appointmentService: AppointmentService, private formBuilder:FormBuilder) {}
+  constructor(private appointmentService: AppointmentService, private formBuilder:FormBuilder, private toastr:ToastrService) {}
 
   ngOnInit(): void {
   }
@@ -32,9 +34,9 @@ export class CreateAppointmentComponent {
       const newAppointment: appointment = { ...this.appointmentForm.value };
       this.appointmentService.createAppointment(newAppointment).subscribe(
         (createdAppointment: appointment) => {
+          this.toastr.success("Appointment created successfully!");
           console.log('Appointment created:', createdAppointment);
-          // Optionally, you can perform any additional logic after creating the appointment
-          // For example, you can update the local appointments list or show a success message
+        
           this.appointmentForm.reset(); // Reset the form after successful submission
         },
         (error: any) => {
