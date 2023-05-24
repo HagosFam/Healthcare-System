@@ -10,33 +10,47 @@ spring:
           uri: lb://billing-and-payment-service
           predicates:
             - Path=/api/v1/bills/**
-#          filters:
-#            - AuthenticationFilter
+          filters:
+            - AuthenticationFilter
 
         - id: appointment-management-service
           uri: lb://appointment-management-service
           predicates:
             - Path=/api/v1/appointments/**
-#          filters:
-#            - AuthenticationFilter
+          filters:
+            - AuthenticationFilter
 
         - id: patient-management-service
           uri: lb://patient-management-service
           predicates:
             - Path=/api/v1/patients/**
-#          filters:
-#            - AuthenticationFilter
+          filters:
+            - AuthenticationFilter
 
         - id: insurance-management-service
           uri: lb://insurance-management-service
           predicates:
             - Path=/api/v1/insurances/**
-#          filters:
-#            - AuthenticationFilter
+          filters:
+            - AuthenticationFilter
+
+        - id: prescription-management-service
+          uri: lb://prescription-management-service
+          predicates:
+            - Path=/api/v1/prescriptions/**
+          filters:
+            - AuthenticationFilter
+
+        - id: electronic-health-record-service
+          uri: lb://electronic-health-record-service
+          predicates:
+            - Path=/api/v1/medicalrecord/**
+          filters:
+            - AuthenticationFilter
 
         - id: identity-management-service
           uri: lb://identity-management-service
           predicates:
-            - Path=/api/v1/users
+            - Path=/api/v1/identity/**
           filters:
             - AuthenticationFilter

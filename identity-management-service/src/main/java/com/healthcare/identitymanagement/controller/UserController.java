@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/identity/users")
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UserController {
     @Autowired

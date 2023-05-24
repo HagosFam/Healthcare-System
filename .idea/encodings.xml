@@ -21,6 +21,8 @@
     <file url="file://$PROJECT_DIR$/patient-management-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prescription-management-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prescription-management-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resilience4j-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resilience4j-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-registry/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-registry/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
