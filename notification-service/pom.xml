@@ -7,7 +7,7 @@
         <version>1.0</version>
     </parent>
     <artifactId>notification-service</artifactId>
-    <name>Archetype - notification-service</name>
+    <name>notification-service</name>
     <url>http://maven.apache.org</url>
     <build>
         <plugins>

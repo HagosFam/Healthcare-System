@@ -15,6 +15,7 @@
     <module>insurance-management-service</module>
     <module>billing-and-payment-service</module>
     <module>notification-service</module>
+    <module>identity-management-service</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
