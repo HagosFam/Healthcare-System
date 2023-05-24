@@ -18,7 +18,7 @@ public interface IAppointmentRepository extends JpaRepository<Appointment, Long>
         if (optionalAppointment.isPresent()) {
             Appointment appointment1 = optionalAppointment.get();
             appointment1.setAppointmentDate(appointment.getAppointmentDate());
-            appointment1.setDoctorId(appointment.getDoctorId());
+            appointment1.setProviderId(appointment.getProviderId());
             appointment1.setPatientId(appointment.getPatientId());
             appointment1.setRoomNumber(appointment.getRoomNumber());
             save(appointment1);

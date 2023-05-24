@@ -1,4 +1,6 @@
-package com.healthcare.appointment.domains;
+package com.healthcare.appointment.dtos;
+
+import com.healthcare.appointment.domains.Appointment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ public class AppointmentAdapter {
 
         appointmentDto.setAppointmentId(appointment.getAppointmentId());
         appointmentDto.setAppointmentDate(appointment.getAppointmentDate());
-        appointmentDto.setDoctorId(appointment.getDoctorId());
+        appointmentDto.setProviderId(appointment.getProviderId());
         appointmentDto.setPatientId(appointment.getPatientId());
         appointmentDto.setRoomNumber(appointment.getRoomNumber());
         return appointmentDto;
@@ -20,7 +22,7 @@ public class AppointmentAdapter {
 
         appointment.setAppointmentId(appointmentDto.getAppointmentId());
         appointment.setAppointmentDate(appointmentDto.getAppointmentDate());
-        appointment.setDoctorId(appointmentDto.getDoctorId());
+        appointment.setProviderId(appointmentDto.getProviderId());
         appointment.setPatientId(appointmentDto.getPatientId());
         appointment.setRoomNumber(appointmentDto.getRoomNumber());
         return appointment;

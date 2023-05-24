@@ -2,9 +2,9 @@ package com.healthcare.appointment.queryServices;
 
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import com.healthcare.appointment.domains.Appointment;
-import com.healthcare.appointment.domains.AppointmentAdapter;
-import com.healthcare.appointment.domains.AppointmentDto;
-import com.healthcare.appointment.domains.Doctor;
+import com.healthcare.appointment.dtos.AppointmentAdapter;
+import com.healthcare.appointment.dtos.AppointmentDto;
+import com.healthcare.appointment.dtos.Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     IAppointmentRepository repository;
 
     @Override
-    public List<Doctor> getAllDoctors() {
+    public List<Provider> getAllDoctors() {
         log.info("Appointment getAllDoctors");
 
         return null;

@@ -15,6 +15,6 @@ public class Appointment {
     private Long appointmentId;
     private Long patientId;
     private String appointmentDate;
-    private Long doctorId;
+    private Long providerId;
     private String roomNumber;
 }

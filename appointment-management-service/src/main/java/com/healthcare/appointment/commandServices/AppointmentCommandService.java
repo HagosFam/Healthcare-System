@@ -1,7 +1,7 @@
 package com.healthcare.appointment.commandServices;
 import com.healthcare.appointment.domains.Appointment;
-import com.healthcare.appointment.domains.AppointmentAdapter;
-import com.healthcare.appointment.domains.AppointmentDto;
+import com.healthcare.appointment.dtos.AppointmentAdapter;
+import com.healthcare.appointment.dtos.AppointmentDto;
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

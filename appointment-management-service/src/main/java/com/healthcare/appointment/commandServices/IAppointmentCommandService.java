@@ -1,6 +1,6 @@
 package com.healthcare.appointment.commandServices;
 
-import com.healthcare.appointment.domains.AppointmentDto;
+import com.healthcare.appointment.dtos.AppointmentDto;
 
 
 public interface IAppointmentCommandService {
