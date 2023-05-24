@@ -1,9 +1,11 @@
 spring:
   application:
-  name: billing-and-payment
+    name: billing-and-payment-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
   datasource:
-    password: 1234
-    url: jdbc:postgresql://localhost:5432/postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:2020/postgres
     username: postgres
   jpa:
     hibernate:
@@ -18,5 +20,3 @@ spring:
   sql:
     init:
       mode: always
-server:
-  port: 8081

@@ -1,0 +1,24 @@
+<form [formGroup]="billForm" (ngSubmit)="createBill()">
+    <div>
+      <label for="patientId">Patient ID:</label>
+      <input type="text" id="patientId" formControlName="patientId" required>
+    </div>
+    <div>
+      <label for="servicesRendered">Services Rendered:</label>
+      <input type="text" id="servicesRendered" formControlName="servicesRendered">
+    </div>
+    <div formArrayName="payment">
+      <div *ngFor="let paymentGroup of paymentArray.controls; let i = index">
+        <div [formGroupName]="i">
+          <label for="paymentDate{{i}}">Payment Date:</label>
+          <input type="text" id="paymentDate{{i}}" formControlName="paymentDate">
+          <label for="id{{i}}">Payment ID:</label>
+          <input type="text" id="id{{i}}" formControlName="id">
+          <label for="amount{{i}}">Payment Amount:</label>
+          <input type="text" id="amount{{i}}" formControlName="amount">
+        </div>
+      </div>
+    </div>
+    <button type="submit">Create Bill</button>
+  </form>
+  

@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.microservice</groupId>
         <artifactId>health-care-microservice</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>notification-service</artifactId>
-    <name>Archetype - notification-service</name>
+    <name>notification-service</name>
     <url>http://maven.apache.org</url>
     <build>
         <plugins>
@@ -41,16 +41,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-        </dependency>
-
 
     </dependencies>
 </project>

@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.microservice</groupId>
   <artifactId>health-care-microservice</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>pom</packaging>
   <name>health-care-microservice</name>
   <url>http://maven.apache.org</url>
@@ -15,14 +15,15 @@
     <module>insurance-management-service</module>
     <module>billing-and-payment-service</module>
     <module>notification-service</module>
+    <module>identity-management-service</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <spring.boot.maven.plugin.version>2.5.7</spring.boot.maven.plugin.version>
-    <spring.boot.dependencies.version>2.5.7</spring.boot.dependencies.version>
-    <spring.cloud-version>2020.0.3</spring.cloud-version>
+    <spring.boot.maven.plugin.version>3.0.7</spring.boot.maven.plugin.version>
+    <spring.boot.dependencies.version>3.0.7</spring.boot.dependencies.version>
+    <spring.cloud-version>2022.0.2</spring.cloud-version>
     <image>koedakyokotsu/${project.artifactId}:${project.version}</image>
   </properties>
 
@@ -54,10 +55,10 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.cloud</groupId>-->
+<!--      <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+<!--    </dependency>-->
   </dependencies>
 
   <build>

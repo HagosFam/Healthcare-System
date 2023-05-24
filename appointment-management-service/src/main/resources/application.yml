@@ -1,0 +1,23 @@
+
+spring:
+    application:
+        name: appointment-management-service
+    config:
+        import: "optional:configserver:http://localhost:8088"
+    datasource:
+        password: postgres
+        url: jdbc:postgresql://localhost:2021/postgres
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+        show-sql: true
+        defer-datasource-initialization: true
+        generate-ddl: true
+    sql:
+        init:
+            mode: always

@@ -1,8 +1,8 @@
 spring:
+  application:
+    name: insurance-management-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
   data:
     mongodb:
       uri: mongodb://localhost:27017/insurance
-  application:
-    name: insurance
-server:
-  port: 8080

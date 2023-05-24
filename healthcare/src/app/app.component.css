@@ -1,0 +1,64 @@
+/* styles.css */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spacer {
+  flex: 1;
+}
+
+
+.footer {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #333;
+}
+
+.footer .copyright {
+  font-size: 14px;
+}
+
+
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-weight: bold;
+}
+
+a {
+  font-size: 40px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 2px 6px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+

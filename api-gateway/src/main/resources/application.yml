@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: api-gateway-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+  cloud:
+    gateway:
+      routes:
+        - id: billing-and-payment-service
+          uri: lb://billing-and-payment-service
+          predicates:
+            - Path=/api/v1/bills/**
+          filters:
+            - AuthenticationFilter
+
+        - id: appointment-management-service
+          uri: lb://appointment-management-service
+          predicates:
+            - Path=/api/v1/appointments/**
+          filters:
+            - AuthenticationFilter
+
+        - id: patient-management-service
+          uri: lb://patient-management-service
+          predicates:
+            - Path=/api/v1/patients/**
+          filters:
+            - AuthenticationFilter
+
+        - id: insurance-management-service
+          uri: lb://insurance-management-service
+          predicates:
+            - Path=/api/v1/insurances/**
+          filters:
+            - AuthenticationFilter
+
+        - id: prescription-management-service
+          uri: lb://prescription-management-service
+          predicates:
+            - Path=/api/v1/prescriptions/**
+          filters:
+            - AuthenticationFilter
+
+        - id: electronic-health-record-service
+          uri: lb://electronic-health-record-service
+          predicates:
+            - Path=/api/v1/medicalrecord/**
+          filters:
+            - AuthenticationFilter
+
+        - id: identity-management-service
+          uri: lb://identity-management-service
+          predicates:
+            - Path=/api/v1/identity/**
+          filters:
+            - AuthenticationFilter

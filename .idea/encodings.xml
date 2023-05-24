@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/appointment-management-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/appointment-management-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/billing-and-payment-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/billing-and-payment-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/electronic-health-record-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/electronic-health-record-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/identity-management-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/identity-management-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/insurance-management-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/insurance-management-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notification-service/src/main/java" charset="UTF-8" />
@@ -15,6 +21,10 @@
     <file url="file://$PROJECT_DIR$/patient-management-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prescription-management-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prescription-management-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resilience4j-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resilience4j-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-registry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-registry/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
