@@ -3,8 +3,7 @@ package com.healthcare.billingandpayment.controller;
 import com.healthcare.billingandpayment.service.IBillService;
 import com.healthcare.billingandpayment.service.dto.BillDto;
 import com.healthcare.billingandpayment.service.dto.PaymentDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/bills")
 @CrossOrigin("*")
+@Slf4j
 public class BillController {
-
-    private static final Logger logger = LoggerFactory.getLogger(BillController.class);
 
     @Autowired
     private IBillService billService;
@@ -23,7 +21,7 @@ public class BillController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
 
-        logger.info("Bill find: {}", id);
+        log.info("Bill find: {}", id);
 
         BillDto billDto = billService.findById(id);
         if (billDto != null)
@@ -33,7 +31,7 @@ public class BillController {
 
     @GetMapping
     public ResponseEntity<?> findAll(@RequestParam(value = "patientId", required = false) Long patientId) {
-        logger.info("Bill findAll");
+        log.info("Bill findAll");
 
         if (patientId == null)
             return new ResponseEntity<>(billService.findAll(), HttpStatus.OK);
@@ -42,14 +40,14 @@ public class BillController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody BillDto billDto) {
-        logger.info("Bill save: {}", billDto);
+        log.info("Bill save: {}", billDto);
 
         return new ResponseEntity<>(billService.save(billDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
-        logger.info("Bill delete: {}", id);
+        log.info("Bill delete: {}", id);
 
         BillDto billDto = billService.findById(id);
         if (billDto == null)
@@ -61,7 +59,7 @@ public class BillController {
 
     @DeleteMapping
     public ResponseEntity<?> deleteAll() {
-        logger.info("Bill deleteAll");
+        log.info("Bill deleteAll");
 
         billService.deleteAll();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -69,7 +67,7 @@ public class BillController {
 
     @PutMapping
     public ResponseEntity<?> update(Long id, @RequestBody BillDto billDto) {
-        logger.info("Bill update: bill-id={}/{}", id, billDto);
+        log.info("Bill update: bill-id={}/{}", id, billDto);
 
         return new ResponseEntity<>(billService.update(id, billDto), HttpStatus.OK);
     }
@@ -77,7 +75,7 @@ public class BillController {
     @PutMapping("/{id}/payment")
     public ResponseEntity<?> updatePayment(@PathVariable Long id, @RequestBody PaymentDto paymentDto) {
 
-        logger.info("Bill updatePayment: bill-id={}/{}", id, paymentDto);
+        log.info("Bill updatePayment: bill-id={}/{}", id, paymentDto);
 
         BillDto billDto = billService.findById(id);
         if (billDto == null)

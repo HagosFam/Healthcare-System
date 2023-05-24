@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/patients")
 @AllArgsConstructor
+@Slf4j
 public class PatientController {
 
     private static final String SERVICE_PATIENT = "servicePatient";
@@ -34,8 +36,6 @@ public class PatientController {
     private PatientService patientService;
 
     private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
-
-    private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
 
     @Operation(
             summary = "Create Patient REST API",
@@ -51,7 +51,7 @@ public class PatientController {
             @Valid
             @RequestBody PatientDto patientDto){
 
-        logger.info("Patient create: {}", patientDto);
+        log.info("Patient create: {}", patientDto);
 
         PatientDto patient = patientService.createPatient(patientDto);
 
@@ -76,7 +76,7 @@ public class PatientController {
     )
     @GetMapping
     public ResponseEntity<List<PatientDto>> getAll(){
-        logger.info("Patient getAll");
+        log.info("Patient getAll");
 
         List<PatientDto> patients = patientService.getAllPatients();
         return new ResponseEntity<>(patients, HttpStatus.OK);
@@ -92,7 +92,7 @@ public class PatientController {
     )
     @GetMapping("{id}")
     public ResponseEntity<PatientDto> get(@PathVariable Long id){
-        logger.info("Patient get: {}", id);
+        log.info("Patient get: {}", id);
 
         PatientDto patientDto = patientService.getPatient(id);
         return new ResponseEntity<>(patientDto, HttpStatus.OK);
@@ -110,7 +110,7 @@ public class PatientController {
             @Valid
             @PathVariable Long id, @RequestBody PatientDto patientDto){
 
-        logger.info("Patient update: {}/{}",id, patientDto);
+        log.info("Patient update: {}/{}",id, patientDto);
 
         patientDto.setId(id);
         PatientDto updatedPatient = patientService.updatePatient(patientDto);
@@ -127,7 +127,7 @@ public class PatientController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
 
-        logger.info("Patient delete: {}", id);
+        log.info("Patient delete: {}", id);
 
         patientService.deletePatient(id);
         return new ResponseEntity<>("Patient Deleted Successfully!", HttpStatus.OK);
@@ -143,7 +143,7 @@ public class PatientController {
     @GetMapping("{phoneNumberOrEmail}/search")
     public ResponseEntity<PatientDto> getByPhoneNumberOrEmail(@PathVariable String phoneNumberOrEmail){
 
-        logger.info("Patient getByPhoneOrEmail: {}", phoneNumberOrEmail);
+        log.info("Patient getByPhoneOrEmail: {}", phoneNumberOrEmail);
 
         PatientDto patientDto = patientService.getPatientByPhoneNumberOrEmail(phoneNumberOrEmail);
 
