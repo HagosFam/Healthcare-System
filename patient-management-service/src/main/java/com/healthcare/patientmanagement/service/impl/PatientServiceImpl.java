@@ -1,5 +1,6 @@
 package com.healthcare.patientmanagement.service.impl;
 
+import com.healthcare.patientmanagement.controller.PatientController;
 import com.healthcare.patientmanagement.dto.PatientDto;
 import com.healthcare.patientmanagement.entity.Patient;
 import com.healthcare.patientmanagement.exception.EmailAlreadyExistsException;
@@ -7,6 +8,8 @@ import com.healthcare.patientmanagement.exception.PhoneNumberAlreadyExistsExcept
 import com.healthcare.patientmanagement.mapper.AutoPatientMapper;
 import com.healthcare.patientmanagement.service.PatientService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.healthcare.patientmanagement.exception.ResourceNotFoundException;
 import com.healthcare.patientmanagement.repository.PatientRepository;
@@ -20,14 +23,22 @@ import java.util.stream.Collectors;
 public class PatientServiceImpl implements PatientService {
 
     private PatientRepository patientRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
+
     @Override
     public PatientDto getPatient(Long id) {
+
+        logger.info("Patient get: {}", id);
+
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient", "id", Long.toString(id)));
         return AutoPatientMapper.MAPPER.mapToPatientDto(patient);
     }
 
     @Override
     public PatientDto getPatientByPhoneNumberOrEmail(String phoneNumberOrEmail) {
+
+        logger.info("Patient getByPhoneNumberOrEmail: {}", phoneNumberOrEmail);
 
         Patient patient = patientRepository.getPatientByPhoneNumberOrEmail(phoneNumberOrEmail, phoneNumberOrEmail).orElseThrow(
                 () -> new ResourceNotFoundException("Patient", "phoneNumberOrEmail", phoneNumberOrEmail)
@@ -37,6 +48,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<PatientDto> getAllPatients() {
+
+        logger.info("Patient getAll");
+
         List<Patient> patients = patientRepository.findAll();
         List<PatientDto> patientsDto = new ArrayList<>();
 
@@ -48,6 +62,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDto createPatient(PatientDto patientDto) {
+
+        logger.info("Patient create: {}", patientDto);
+
         if (patientRepository.getPatientByPhoneNumber(patientDto.getPhoneNumber()).isPresent()){
             throw new PhoneNumberAlreadyExistsException("Phone Number Already Exists!");
         }
@@ -62,6 +79,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDto updatePatient(PatientDto patientDto) {
+
+        logger.info("Patient update: {}", patientDto);
+
         Patient patientToUpdate = patientRepository.findById(patientDto.getId()).orElseThrow(() -> new ResourceNotFoundException("Patient", "id", Long.toString(patientDto.getId())));
 
         if(patientDto.getFirstName() != null) patientToUpdate.setFirstName(patientDto.getFirstName());
@@ -81,6 +101,8 @@ public class PatientServiceImpl implements PatientService {
         if(patientRepository.existsById(id)){
             patientRepository.deleteById(id);
         }
-        else throw new ResourceNotFoundException("Patient", "id", Long.toString(id));
+        else
+            logger.error("Patient not found: {}", id);
+        //throw new ResourceNotFoundException("Patient", "id", Long.toString(id));
     }
 }

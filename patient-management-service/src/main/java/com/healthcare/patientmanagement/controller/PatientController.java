@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,8 @@ public class PatientController {
 
     private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
 
+    private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
+
     @Operation(
             summary = "Create Patient REST API",
             description = "Create Patient REST API is used to save patient in a database"
@@ -46,6 +50,9 @@ public class PatientController {
     public ResponseEntity<?> create(
             @Valid
             @RequestBody PatientDto patientDto){
+
+        logger.info("Patient create: {}", patientDto);
+
         PatientDto patient = patientService.createPatient(patientDto);
 
         User user = new User(
@@ -69,6 +76,8 @@ public class PatientController {
     )
     @GetMapping
     public ResponseEntity<List<PatientDto>> getAll(){
+        logger.info("Patient getAll");
+
         List<PatientDto> patients = patientService.getAllPatients();
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
@@ -83,6 +92,8 @@ public class PatientController {
     )
     @GetMapping("{id}")
     public ResponseEntity<PatientDto> get(@PathVariable Long id){
+        logger.info("Patient get: {}", id);
+
         PatientDto patientDto = patientService.getPatient(id);
         return new ResponseEntity<>(patientDto, HttpStatus.OK);
     }
@@ -98,6 +109,9 @@ public class PatientController {
     public ResponseEntity<PatientDto> update(
             @Valid
             @PathVariable Long id, @RequestBody PatientDto patientDto){
+
+        logger.info("Patient update: {}/{}",id, patientDto);
+
         patientDto.setId(id);
         PatientDto updatedPatient = patientService.updatePatient(patientDto);
         return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
@@ -112,6 +126,9 @@ public class PatientController {
     )
     @DeleteMapping("{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
+
+        logger.info("Patient delete: {}", id);
+
         patientService.deletePatient(id);
         return new ResponseEntity<>("Patient Deleted Successfully!", HttpStatus.OK);
     }
@@ -125,6 +142,8 @@ public class PatientController {
     )
     @GetMapping("{phoneNumberOrEmail}/search")
     public ResponseEntity<PatientDto> getByPhoneNumberOrEmail(@PathVariable String phoneNumberOrEmail){
+
+        logger.info("Patient getByPhoneOrEmail: {}", phoneNumberOrEmail);
 
         PatientDto patientDto = patientService.getPatientByPhoneNumberOrEmail(phoneNumberOrEmail);
 
