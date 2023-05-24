@@ -1,4 +1,4 @@
-package com.healthcare.patientmanagement.util;
+package com.healthcare.appointment.util;
 
 public enum Role {
     ADMIN,

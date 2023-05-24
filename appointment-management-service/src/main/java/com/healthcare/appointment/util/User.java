@@ -1,3 +1,3 @@
-package com.healthcare.patientmanagement.util;
+package com.healthcare.appointment.util;
 
-public record User(String email,String firstName,String lastName,String password,Role role){}
+public record User(String email, String firstName, String lastName, Role role){}
