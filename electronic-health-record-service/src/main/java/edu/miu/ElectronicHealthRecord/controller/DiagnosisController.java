@@ -25,7 +25,7 @@ public class DiagnosisController {
         if(diagnosisReport != null){
             return ResponseEntity.ok().body(diagnosisReport);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Diagnosis report with diagnosis ID " + diagnosisId +" does not exist");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Diagnosis report with diagnosis ID" + diagnosisId +"does not exist");
     }
 
     @GetMapping("list/{medicalRecordId}")
@@ -34,35 +34,34 @@ public class DiagnosisController {
         if(diagnosisReports != null){
             return ResponseEntity.ok().body(diagnosisReports);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Diagnosis report with medicalRecord ID" + medicalRecordId +"has no diagnosis report");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Diagnosis report with medicalRecord ID" + medicalRecordId +"has no diagnosis report");
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<?> createPatientDiagnosis(@RequestBody DiagnosisReport diagnosis){
         Long patientId = diagnosis.getPatientId();
         DiagnosisReport newDiagnosisReport = diagnosisReportService.createDiagnosisReport(diagnosis);
-       if(diagnosisReportService.getAllDiagnosisReports(patientId).contains(newDiagnosisReport)){
+        if(diagnosisReportService.getAllDiagnosisReports(patientId).contains(newDiagnosisReport)){
             return ResponseEntity.ok().body(newDiagnosisReport);
-       }
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Diagnosis report has not been saved");
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Diagnosis report has not been saved");
     }
 
     @PutMapping("/{diagnosisId}")
     public ResponseEntity<?> updatePatientDiagnosis(@PathVariable Long diagnosisId , @RequestBody DiagnosisReport diagnosis){
         DiagnosisReport diagnosisReport = diagnosisReportService.updateDiagnosisReport(diagnosisId,diagnosis);
-        if(diagnosisReport != null && diagnosisReport.getId() == diagnosisId){
+        if(diagnosisReportService.getDiagnosisReportById(diagnosis.getId()) == diagnosis){
             return ResponseEntity.ok().body(diagnosisReport);
         }
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).
-                body("Failed to update the diagnosis report,patient ID must be the same");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update the diagnosis report");
     }
 
     @DeleteMapping("/{diagnosisId}")
     public ResponseEntity<String> deletePatientDiagnosis(@PathVariable Long diagnosisId){
         diagnosisReportService.deleteDiagnosisReport(diagnosisId);
         if(diagnosisReportService.getDiagnosisReportById(diagnosisId) == null){
-            return ResponseEntity.ok().body("Diagnosis report with ID " + diagnosisId + " is deleted");
+            return ResponseEntity.ok().body("Diagnosis report with ID" + diagnosisId + " is deleted");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Failed to delete the diagnosis report");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete the diagnosis report");
     }
 }

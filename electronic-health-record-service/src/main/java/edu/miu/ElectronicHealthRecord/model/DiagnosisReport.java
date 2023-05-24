@@ -1,6 +1,5 @@
 package edu.miu.ElectronicHealthRecord.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +18,7 @@ public class DiagnosisReport {
     private String diagnosisCode;
     private String recommendation;
     private Long prescriptionId; // get from other API
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JsonIgnore
+    @ManyToOne()
     private MedicalRecord medicalRecord;
 
 }

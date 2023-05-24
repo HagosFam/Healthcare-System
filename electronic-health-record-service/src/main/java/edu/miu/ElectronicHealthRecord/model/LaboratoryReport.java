@@ -1,6 +1,5 @@
 package edu.miu.ElectronicHealthRecord.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +17,7 @@ public class LaboratoryReport {
     private Long patientId;
     private String testType;
     private String testResult;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JsonIgnore
+    @ManyToOne()
     private MedicalRecord medicalRecord;
 
 }
