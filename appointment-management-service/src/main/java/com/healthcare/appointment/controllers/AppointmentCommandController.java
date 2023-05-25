@@ -1,7 +1,8 @@
 package com.healthcare.appointment.controllers;
 
 import com.healthcare.appointment.commandServices.IAppointmentCommandService;
-import com.healthcare.appointment.dtos.AppointmentDto;
+import com.healthcare.appointment.dtos.request.AppointmentRequestDto;
+import com.healthcare.appointment.dtos.response.AppointmentResponseDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class AppointmentCommandController {
 
     @PostMapping
     @ApiOperation("Create Appointment")
-    public ResponseEntity<?> saveAppointment(@RequestBody AppointmentDto appointmentDto) {
+    public ResponseEntity<?> saveAppointment(@RequestBody AppointmentRequestDto appointmentDto) {
         log.info("Appointment save: {}", appointmentDto);
 
         return new ResponseEntity<>(appointmentCommandService.saveAppointment(appointmentDto), HttpStatus.OK);
@@ -28,7 +29,7 @@ public class AppointmentCommandController {
 
     @PutMapping("/{appointmentId}")
     @ApiOperation("Change Appointment")
-    public ResponseEntity<?> changeAppointment(@PathVariable("appointmentId") Long id, @RequestBody AppointmentDto appointmentDto) {
+    public ResponseEntity<?> changeAppointment(@PathVariable("appointmentId") Long id, @RequestBody AppointmentRequestDto appointmentDto) {
         log.info("Appointment change: {}/{}",id, appointmentDto);
         return new ResponseEntity<>(appointmentCommandService.changeAppointment(id, appointmentDto), HttpStatus.OK);
     }

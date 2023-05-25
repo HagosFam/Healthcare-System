@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Long id){
         var user = userService.findById(id);
         if(user != null)
@@ -44,7 +44,7 @@ public class UserController {
         return new ResponseEntity<>(userService.save(userRequestDto), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
         userService.deleteById(id);
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

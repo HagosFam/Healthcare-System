@@ -120,4 +120,10 @@ public class PatientServiceImpl implements PatientService {
             log.error("Patient not found: {}", id);
         //throw new ResourceNotFoundException("Patient", "id", Long.toString(id));
     }
+
+    @Override
+    public void deleteAll() {
+        log.error("Patients deleteAll");
+        patientRepository.deleteAll();;
+    }
 }

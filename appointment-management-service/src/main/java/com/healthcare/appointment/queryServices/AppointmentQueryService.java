@@ -1,15 +1,22 @@
 package com.healthcare.appointment.queryServices;
 
 import com.healthcare.appointment.dtos.*;
+import com.healthcare.appointment.dtos.response.AppointmentResponseAdapter;
+import com.healthcare.appointment.dtos.response.AppointmentResponseDto;
+import com.healthcare.appointment.dtos.response.AppointmentsResponseDto;
 import com.healthcare.appointment.integrations.feign.FeignIdentityManagementService;
 import com.healthcare.appointment.integrations.feign.FeignPatientManagementService;
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import com.healthcare.appointment.domains.Appointment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -18,22 +25,28 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     @Autowired
     IAppointmentRepository repository;
 
-    private FeignIdentityManagementService identityManagementServiceUtil;
-    private FeignPatientManagementService patientManagementServiceUtil;
+    @Autowired
+    private FeignIdentityManagementService identityManagementService;
+
+    @Autowired
+    private FeignPatientManagementService patientManagementService;
 
     @Override
     public List<Provider> getAllDoctors() {
         log.info("Appointment getAllDoctors");
 
-        //TODO get all providers
-        var providers = identityManagementServiceUtil.findByRole(Role.PROVIDER).getBody();
-        System.out.println(providers);
+        List<Provider> providers = new ArrayList<>();
 
-        return null;
+        //GET Provider
+        ResponseEntity<?> providerResponse = identityManagementService.findByRole(Role.PROVIDER);
+        if(providerResponse.getStatusCode() == HttpStatus.OK)
+            providers.addAll((List<Provider>) Objects.requireNonNull(providerResponse.getBody()));
+
+        return providers;
     }
 
     @Override
-    public AppointmentDto searchAppointment(Long id) {
+    public AppointmentResponseDto searchAppointment(Long id) {
         log.info("Appointment get: {}", id);
 
         Optional<Appointment> appointmentOptional = repository.findById(id);
@@ -41,18 +54,25 @@ public class AppointmentQueryService implements IAppointmentQueryService {
         if (appointmentOptional.isPresent()) {
             Appointment appointment = appointmentOptional.get();
 
-            AppointmentDto appointmentDto = AppointmentAdapter.getAppointmentDTO(appointment);
+            AppointmentResponseDto appointmentDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
 
-            //TODO get provider, patient
-            var provider = identityManagementServiceUtil.findById(appointment.getProviderId()).getBody();
-            System.out.println(provider);
+            //GET Provider
+//            ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
+//            if(providerResponse.getStatusCode() == HttpStatus.OK)
+//            {
+//                Provider provider = (Provider)providerResponse.getBody();
+//                if(provider != null)
+//                    appointmentDto.setProvider(provider);
+//            }
 
-            var patient = patientManagementServiceUtil.findById(appointment.getPatientId()).getBody();
-            System.out.println(patient);
-
-            //TODO add provider and patient to appointmentDto
-            //appointmentDto.setPatient();
-            //appointmentDto.setProvider();
+            //GET patient
+//            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+//            if(patientResponse.getStatusCode() == HttpStatus.OK)
+//            {
+//                Patient patient= (Patient) patientResponse.getBody();
+//                if(patient != null)
+//                    appointmentDto.setPatient(patient);
+//            }
 
             return appointmentDto;
         }
@@ -61,29 +81,60 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     }
 
     @Override
-    public AppointmentsDto listAllAppointments() {
+    public AppointmentsResponseDto listAllAppointments() {
         log.info("Appointment listAll");
 
         List<Appointment> appointments = repository.findAll();
 
+        List<AppointmentResponseDto> appointmentsDto = new ArrayList<>();
         for (Appointment appointment : appointments) {
-            //TODO get provider, patient
+            AppointmentResponseDto appointmentResponseDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
+
+            //GET Provider
+//            ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
+//            if(providerResponse.getStatusCode() == HttpStatus.OK)
+//            {
+//                Provider provider = (Provider)providerResponse.getBody();
+//                if(provider != null)
+//                    appointmentResponseDto.setProvider(provider);
+//            }
+
+            //GET patient
+//            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+//            if(patientResponse.getStatusCode() == HttpStatus.OK)
+//            {
+//                Patient patient= (Patient) patientResponse.getBody();
+//                if(patient != null)
+//                    appointmentResponseDto.setPatient(patient);
+//            }
+            appointmentsDto.add(appointmentResponseDto);
         }
 
-        return AppointmentAdapter.getListAppointmentDTO(appointments);
+        return AppointmentResponseAdapter.getListAppointmentDTO(appointments);
     }
 
     @Override
-    public AppointmentsDto listAppointmentsPerDoctor(Long doctorId) {
+    public AppointmentsResponseDto listAppointmentsPerDoctor(Long doctorId) {
 
         log.info("Appointment getAppointmentsPerProvider: provider-di={}", doctorId);
 
         List<Appointment> appointments = repository.findByProviderId(doctorId);
 
+        List<AppointmentResponseDto> appointmentsDto = new ArrayList<>();
         for (Appointment appointment : appointments) {
-            //TODO get patient
+            AppointmentResponseDto appointmentResponseDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
+
+            //GET patient
+//            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+//            if(patientResponse.getStatusCode() == HttpStatus.OK)
+//            {
+//                Patient patient= (Patient) patientResponse.getBody();
+//                if(patient != null)
+//                    appointmentResponseDto.setPatient(patient);
+//            }
+            appointmentsDto.add(appointmentResponseDto);
         }
 
-        return AppointmentAdapter.getListAppointmentDTO(appointments);
+        return AppointmentResponseAdapter.getListAppointmentDTO(appointments);
     }
 }

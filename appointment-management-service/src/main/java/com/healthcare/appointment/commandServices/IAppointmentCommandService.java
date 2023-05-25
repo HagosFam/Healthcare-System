@@ -1,12 +1,13 @@
 package com.healthcare.appointment.commandServices;
 
-import com.healthcare.appointment.dtos.AppointmentDto;
+import com.healthcare.appointment.dtos.request.AppointmentRequestDto;
+import com.healthcare.appointment.dtos.response.AppointmentResponseDto;
 
 
 public interface IAppointmentCommandService {
-     AppointmentDto saveAppointment(AppointmentDto appointmentDto);
+     AppointmentResponseDto saveAppointment(AppointmentRequestDto appointmentDto);
 
-     AppointmentDto changeAppointment(Long id, AppointmentDto appointmentDto);
+     AppointmentResponseDto changeAppointment(Long id, AppointmentRequestDto appointmentDto);
 
      void cancelAppointment(Long appointmentId);
 

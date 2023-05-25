@@ -116,6 +116,16 @@ public class PatientController {
         patientService.deletePatient(id);
         return new ResponseEntity<>("Patient Deleted Successfully!", HttpStatus.OK);
     }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAll(){
+
+        log.info("Patient deleteAll");
+
+        patientService.deleteAll();
+        return new ResponseEntity<>("Patients deleted successfully!", HttpStatus.OK);
+    }
+
     @Operation(
             summary = "Search Patient by Phone Number or Email REST API",
             description = "Search a Patient REST API is used to find patient in a database"
