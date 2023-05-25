@@ -7,6 +7,10 @@ form {
     margin-bottom: 0.5rem;
   }
   
+  select {
+    margin-bottom: 0.5rem;
+  }
+
   input[type="text"],
   button[type="submit"] {
     padding: 0.5rem;

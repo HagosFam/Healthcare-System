@@ -1,1 +1,82 @@
-<p>create-patient works!</p>
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="form-column">
+      <!-- First column fields -->
+      <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" formControlName="firstName">
+        <div *ngIf="patientForm.get('firstName')?.invalid && patientForm.get('firstName')?.touched">
+          <small>Please enter a first name.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" formControlName="lastName">
+        <div *ngIf="patientForm.get('lastName')?.invalid && patientForm.get('lastName')?.touched">
+          <small>Please enter a last name.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" formControlName="phoneNumber">
+        <div *ngIf="patientForm.get('phoneNumber')?.invalid && patientForm.get('phoneNumber')?.touched">
+          <small>Please enter a phone number.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="insuranceId">Insurance ID:</label>
+        <input type="text" id="insuranceId" formControlName="insuranceId">
+        <div *ngIf="patientForm.get('insuranceId')?.invalid && patientForm.get('insuranceId')?.touched">
+          <small>Please enter an insurance ID.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" formControlName="email">
+        <div *ngIf="patientForm.get('email')?.invalid && patientForm.get('email')?.touched">
+          <small>Please enter a valid email address.</small>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-column">
+      <!-- Second column fields -->
+      <div class="address-section">
+        <label for="street">Street:</label>
+        <input type="text" id="street" [formControl]="street">
+        <div *ngIf="street.invalid && street.touched">
+          <small>Please enter a street.</small>
+        </div>
+      </div>
+      
+      <div class="address-section">
+        <label for="city">City:</label>
+        <input type="text" id="city" [formControl]="city">
+        <div *ngIf="city.invalid && city.touched">
+          <small>Please enter a city.</small>
+        </div>
+      </div>
+      
+      <div class="address-section">
+        <label for="state">State:</label>
+        <input type="text" id="state" [formControl]="state">
+        <div *ngIf="state.invalid && state.touched">
+          <small>Please enter a state.</small>
+        </div>
+      </div>
+      
+      <div class="address-section">
+        <label for="zipCode">Zip Code:</label>
+        <input type="text" id="zipCode" [formControl]="zipCode">
+        <div *ngIf="zipCode.invalid && zipCode.touched">
+          <small>Please enter a zip code.</small>
+        </div>
+      </div>
+    </div>
+  <br>
+    <button type="submit">Create Patient</button>
+  </form>
+  

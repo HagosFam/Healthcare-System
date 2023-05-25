@@ -3,6 +3,8 @@ import { appointment } from '../models/appointment';
 import { AppointmentService } from '../service/appointment.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PatientService } from 'src/app/patient-service/service/patient.service';
+import { Patient } from 'src/app/patient-service/models/Patient';
 
 
 @Component({
@@ -15,23 +17,39 @@ export class CreateAppointmentComponent {
   appointments: appointment[] = [];
   appointmentForm: FormGroup = new FormGroup({
     appointmentId: new FormControl(null),
-    patientId: new FormControl(null, Validators.required),
-    appointmentDate: new FormControl('', Validators.required),
-    doctorId: new FormControl(null, Validators.required),
+    patientId: new FormControl(''),
+    appointmentDate: new FormControl(''),
+    doctorId: new FormControl(''),
     roomNumber: new FormControl('')
   });
   
 
-  constructor(private appointmentService: AppointmentService, private formBuilder:FormBuilder, private toastr:ToastrService) {}
+  constructor(private appointmentService: AppointmentService, private formBuilder:FormBuilder, private toastr:ToastrService, private patientService: PatientService) {}
 
-  ngOnInit(): void {
+  patients: Patient[] = new Array();
+
+
+  ngOnInit() {
+    this.getPatients();
+  }
+
+  getPatients() {
+    this.patientService.getPatients()
+      .subscribe(
+        patients => this.patients = patients,
+        error => console.log(error)
+      );
   }
 
 
   // Create an appointment
   createAppointment(): void {
+    
     if (this.appointmentForm.valid) {
       const newAppointment: appointment = { ...this.appointmentForm.value };
+      newAppointment.id=1;
+      newAppointment.date="12/11/23";
+      console.log("arrived")
       this.appointmentService.createAppointment(newAppointment).subscribe(
         (createdAppointment: appointment) => {
           this.toastr.success("Appointment created successfully!");

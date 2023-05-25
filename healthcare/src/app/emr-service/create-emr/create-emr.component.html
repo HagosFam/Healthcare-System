@@ -1,1 +1,55 @@
-<p>create-emr works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            
+<form [formGroup]="medicalRecordForm" (ngSubmit)="saveMedicalRecord()">
+    <div class="form-group">
+      <label for="patientId">Patient ID:</label>
+      <input type="number" id="patientId" formControlName="patientId" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="allergy">Allergy:</label>
+      <input type="text" id="allergy" formControlName="allergy" class="form-control">
+    </div>
+  
+    <h4>Diagnosis Reports</h4>
+    <div formArrayName="diagnosisReports">
+      <div *ngFor="let diagnosisReport of diagnosisReports.controls; let i = index" [formGroupName]="i">
+        <div class="form-group">
+          <label for="diagnosisCode">Diagnosis Code:</label>
+          <input type="text" id="diagnosisCode" formControlName="diagnosisCode" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="recommendation">Recommendation:</label>
+          <input type="text" id="recommendation" formControlName="recommendation" class="form-control">
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeDiagnosisReport(i)">Remove </button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addDiagnosisReport()">Add Diagnosis Report</button>
+   
+  
+    <h4>Laboratory Reports</h4>
+    <div formArrayName="laboratoryReports">
+      <div *ngFor="let laboratoryReport of laboratoryReports.controls; let i = index" [formGroupName]="i">
+        <div class="form-group">
+          <label for="reportType">Report Type:</label>
+          <input type="text" id="reportType" formControlName="reportType" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="result">Result:</label>
+          <input type="text" id="result" formControlName="result" class="form-control">
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeLaboratoryReport(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addLaboratoryReport()">Add Laboratory Report</button>
+  <br> <br>
+    <button type="submit" [disabled]="!medicalRecordForm.valid" class="btn btn-primary">Save Medical Record</button>
+  </form>
+        </div>
+    </div>
+</div>
+
+
+  

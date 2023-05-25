@@ -13,14 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppointmentMgtComponent {
   displayedColumns: string[] = ['id', 'patient', 'date', 'doctor','roomNumber', 'edit', 'delete'];
-  appointment:appointment[] = new Array()
+  appointments:appointment[] = new Array()
   @ViewChild(MatSort)
   sort!: MatSort;
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  dataSource: any
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource = new MatTableDataSource<any>([]);
 
   constructor(private appointmentService:AppointmentService, private toastr:ToastrService) {  }
+  
   ngOnInit(){
     this.fetchAllAppointments();
   }
@@ -29,11 +29,11 @@ export class AppointmentMgtComponent {
     this.appointmentService.getAppointments().subscribe((res) => {
       if (res!=null) {
         this.toastr.success('All appointments loaded');
-        this.appointment = res
-        this.dataSource = new MatTableDataSource(this.appointment);
-        console.log(this.dataSource);
+        this.appointments = res
+        console.log(this.appointments)
+        this.dataSource = new MatTableDataSource(this.appointments);
         this.dataSource.sort = this.sort;
-        setTimeout(() => this.dataSource.paginator = this.paginator);
+         this.dataSource.paginator = this.paginator;
       } else {
         console.log("Can's save data");
       }

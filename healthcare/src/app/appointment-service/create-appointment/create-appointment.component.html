@@ -7,13 +7,15 @@
             Create Appointment
         </h5>
     </div>
- 
+ <br>
     <form [formGroup]="appointmentForm" (ngSubmit)="createAppointment()">
-  <label for="patientId">Patient ID</label>
-  <input type="text" id="patientId" formControlName="patientId">
-
+      <label for="patientId">Patient Name</label>
+      <select style="height: 42px;" id="patientId" formControlName="patientId">
+        <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.firstName }} {{ patient.lastName }}</option>
+      </select>
+      
   <label for="appointmentDate">Appointment Date</label>
-  <input type="text" id="appointmentDate" formControlName="appointmentDate">
+  <input style="height: 42px;" type="date" id="appointmentDate" formControlName="appointmentDate">
 
   <label for="doctorId">Doctor ID</label>
   <input type="text" id="doctorId" formControlName="doctorId">
