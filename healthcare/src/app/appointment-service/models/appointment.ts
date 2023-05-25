@@ -1,7 +1,7 @@
 export class appointment {
-      appointmentId:any
+      id:any
       patientId:any
-      appointmentDate:string=""
-      doctorId:any
+      date:string=""
+      providerId:any
       roomNumber:string=""
 }

@@ -33,7 +33,7 @@ export class PatientManagementComponent implements OnInit {
   getPatients() {
     this.patientService.getPatients().subscribe((res) => {
       if (res!=null) {
-       this.toastr.success('All appointments loaded');
+       this.toastr.success('All patients loaded');
         this.patient = res
         this.dataSource = new MatTableDataSource(this.patient);
         console.log(this.dataSource);

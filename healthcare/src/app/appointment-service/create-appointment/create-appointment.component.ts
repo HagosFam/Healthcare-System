@@ -17,9 +17,9 @@ export class CreateAppointmentComponent {
   appointments: appointment[] = [];
   appointmentForm: FormGroup = new FormGroup({
     appointmentId: new FormControl(null),
-    patientId: new FormControl(null, Validators.required),
-    appointmentDate: new FormControl('', Validators.required),
-    doctorId: new FormControl(null, Validators.required),
+    patientId: new FormControl(''),
+    appointmentDate: new FormControl(''),
+    doctorId: new FormControl(''),
     roomNumber: new FormControl('')
   });
   
@@ -44,8 +44,12 @@ export class CreateAppointmentComponent {
 
   // Create an appointment
   createAppointment(): void {
+    
     if (this.appointmentForm.valid) {
       const newAppointment: appointment = { ...this.appointmentForm.value };
+      newAppointment.id=1;
+      newAppointment.date="12/11/23";
+      console.log("arrived")
       this.appointmentService.createAppointment(newAppointment).subscribe(
         (createdAppointment: appointment) => {
           this.toastr.success("Appointment created successfully!");

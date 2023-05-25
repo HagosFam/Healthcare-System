@@ -8,7 +8,7 @@
   <br>
     <mat-form-field>
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <input matInput (keyup)="applyFilter($event)" #input>
       </mat-form-field>
 
       <div class="mat-elevation-z8">
@@ -16,25 +16,24 @@
           <!-- ID Column -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment ID </th>
-            <td mat-cell *matCellDef="let row"> {{row.appointmentId}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
           </ng-container>
       
-          <!-- Progress Column -->
+        
           <ng-container matColumnDef="patient">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Patient </th>
-            <td mat-cell *matCellDef="let row"> {{row.patientId}}% </td>
+            <td mat-cell *matCellDef="let row"> null</td>
           </ng-container>
       
-          <!-- Name Column -->
+       
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-            <td mat-cell *matCellDef="let row"> {{row.appointmentDate}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.date}} </td>
           </ng-container>
-      
-          <!-- Fruit Column -->
+
           <ng-container matColumnDef="doctor">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </th>
-            <td mat-cell *matCellDef="let row"> {{row.doctorId}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Provider </th>
+            <td mat-cell *matCellDef="let row"> null </td>
           </ng-container>
 
           <ng-container matColumnDef="roomNumber">

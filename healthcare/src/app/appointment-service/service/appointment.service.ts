@@ -7,7 +7,7 @@ import { appointment } from '../models/appointment';
   providedIn: 'root'
 })
 export class AppointmentService {
-  private apiUrl = 'http://localhost:8060/api/v1/appointments';
+  private apiUrl = 'http://localhost:1971/api/v1/appointments';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class AppointmentService {
 
   // Update an appointment
   updateAppointment(updatedAppointment: appointment): Observable<appointment> {
-    const url = `${this.apiUrl}/${updatedAppointment.appointmentId}`;
+    const url = `${this.apiUrl}/${updatedAppointment.id}`;
     return this.http.put<appointment>(url, updatedAppointment);
   }
 
