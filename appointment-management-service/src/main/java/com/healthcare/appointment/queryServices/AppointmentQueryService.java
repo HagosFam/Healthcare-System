@@ -1,8 +1,8 @@
 package com.healthcare.appointment.queryServices;
 
 import com.healthcare.appointment.dtos.*;
-import com.healthcare.appointment.feignutil.FeignIdentityManagementServiceUtil;
-import com.healthcare.appointment.feignutil.FeignPatientManagementServiceUtil;
+import com.healthcare.appointment.integrations.feign.FeignIdentityManagementService;
+import com.healthcare.appointment.integrations.feign.FeignPatientManagementService;
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import com.healthcare.appointment.domains.Appointment;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,8 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     @Autowired
     IAppointmentRepository repository;
 
-    private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
-    private FeignPatientManagementServiceUtil patientManagementServiceUtil;
+    private FeignIdentityManagementService identityManagementServiceUtil;
+    private FeignPatientManagementService patientManagementServiceUtil;
 
     @Override
     public List<Provider> getAllDoctors() {
@@ -47,7 +47,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
             var provider = identityManagementServiceUtil.findById(appointment.getProviderId()).getBody();
             System.out.println(provider);
 
-            var patient = patientManagementServiceUtil.getById(appointment.getPatientId()).getBody();
+            var patient = patientManagementServiceUtil.findById(appointment.getPatientId()).getBody();
             System.out.println(patient);
 
             //TODO add provider and patient to appointmentDto
@@ -78,7 +78,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
 
         log.info("Appointment getAppointmentsPerProvider: provider-di={}", doctorId);
 
-        List<Appointment> appointments = repository.findByDoctorId(doctorId);
+        List<Appointment> appointments = repository.findByProviderId(doctorId);
 
         for (Appointment appointment : appointments) {
             //TODO get patient

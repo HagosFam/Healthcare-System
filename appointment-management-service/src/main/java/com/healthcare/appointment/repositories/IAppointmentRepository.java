@@ -9,15 +9,13 @@ import java.util.Optional;
 
 @Repository
 public interface IAppointmentRepository extends JpaRepository<Appointment, Long> {
-    List<Appointment> findByDoctorId(long doctorId);
-
-    Appointment findByAppointmentId(Long id);
+    List<Appointment> findByProviderId(long doctorId);
 
     default Appointment update(long id, Appointment appointment) {
         Optional<Appointment> optionalAppointment = findById(id);
         if (optionalAppointment.isPresent()) {
             Appointment appointment1 = optionalAppointment.get();
-            appointment1.setAppointmentDate(appointment.getAppointmentDate());
+            appointment1.setDate(appointment.getDate());
             appointment1.setProviderId(appointment.getProviderId());
             appointment1.setPatientId(appointment.getPatientId());
             appointment1.setRoomNumber(appointment.getRoomNumber());

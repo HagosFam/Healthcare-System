@@ -1,19 +1,16 @@
 package com.healthcare.patientmanagement.service.impl;
 
-import com.healthcare.patientmanagement.controller.PatientController;
 import com.healthcare.patientmanagement.dto.PatientDto;
 import com.healthcare.patientmanagement.dto.Role;
 import com.healthcare.patientmanagement.dto.User;
 import com.healthcare.patientmanagement.entity.Patient;
 import com.healthcare.patientmanagement.exception.EmailAlreadyExistsException;
 import com.healthcare.patientmanagement.exception.PhoneNumberAlreadyExistsException;
-import com.healthcare.patientmanagement.feignutil.FeignIdentityManagementServiceUtil;
+import com.healthcare.patientmanagement.integration.feign.FeignIdentityManagementService;
 import com.healthcare.patientmanagement.mapper.AutoPatientMapper;
 import com.healthcare.patientmanagement.service.PatientService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.healthcare.patientmanagement.exception.ResourceNotFoundException;
 import com.healthcare.patientmanagement.repository.PatientRepository;
@@ -29,7 +26,7 @@ public class PatientServiceImpl implements PatientService {
 
     private PatientRepository patientRepository;
 
-    private FeignIdentityManagementServiceUtil identityManagementServiceUtil;
+    private FeignIdentityManagementService identityManagementServiceUtil;
 
     @Override
     public PatientDto getPatient(Long id) {

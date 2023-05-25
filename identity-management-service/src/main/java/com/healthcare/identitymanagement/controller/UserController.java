@@ -23,7 +23,7 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping
+    @GetMapping("/filter")
     public ResponseEntity<?> findByRole(@RequestParam("role") Role role){
         var user = userService.findByRole(role);
         if(user != null)

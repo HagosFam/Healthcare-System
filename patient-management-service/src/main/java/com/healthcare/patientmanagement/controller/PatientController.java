@@ -2,9 +2,6 @@ package com.healthcare.patientmanagement.controller;
 
 import com.healthcare.patientmanagement.dto.PatientDto;
 import com.healthcare.patientmanagement.service.PatientService;
-import com.healthcare.patientmanagement.feignutil.FeignIdentityManagementServiceUtil;
-import com.healthcare.patientmanagement.dto.Role;
-import com.healthcare.patientmanagement.dto.User;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -62,7 +59,7 @@ public class PatientController {
             description = "HTTP Status 200 SUCCESS"
     )
     @GetMapping
-    public ResponseEntity<List<PatientDto>> getAll(){
+    public ResponseEntity<List<PatientDto>> findAll(){
         log.info("Patient getAll");
 
         List<PatientDto> patients = patientService.getAllPatients();
@@ -78,7 +75,7 @@ public class PatientController {
             description = "HTTP Status 200 OK"
     )
     @GetMapping("{id}")
-    public ResponseEntity<PatientDto> getById(@PathVariable Long id){
+    public ResponseEntity<PatientDto> findById(@PathVariable Long id){
         log.info("Patient get: {}", id);
 
         PatientDto patientDto = patientService.getPatient(id);
@@ -128,7 +125,7 @@ public class PatientController {
             description = "HTTP Status 201 CREATED"
     )
     @GetMapping("{phoneNumberOrEmail}/search")
-    public ResponseEntity<PatientDto> getByPhoneNumberOrEmail(@PathVariable String phoneNumberOrEmail){
+    public ResponseEntity<PatientDto> findByPhoneNumberOrEmail(@PathVariable String phoneNumberOrEmail){
 
         log.info("Patient getByPhoneOrEmail: {}", phoneNumberOrEmail);
 
