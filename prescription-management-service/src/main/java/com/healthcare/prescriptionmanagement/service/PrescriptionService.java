@@ -25,12 +25,16 @@ public class PrescriptionService {
 public Medication getmed(long medicationId){
      return medicationRepository.findById(medicationId).get();
 }
-    public long WriteMedication(String medicationName, String description, String manufacture) {
-        Medication md = new Medication(medicationName, description, manufacture);
-        medicationRepository.save(md);
-        return md.getMedicationId();
-    }
-
+//    public long WriteMedication(String medicationName, String description, String manufacture) {
+//        Medication md = new Medication(medicationName, description, manufacture);
+//        medicationRepository.save(md);
+//        return md.getMedicationId();
+//    }
+public long WriteMedication(Medication md) {
+  //  Medication md1 = MedicationAdapter.getMedicationFromMedicationDTO(md);
+    medicationRepository.save(md);
+    return md.getMedicationId();
+}
 
     public long addDoseForMedication(long medicationId, Dosage dosage) {
         Medication m = medicationRepository.findById(medicationId).get();

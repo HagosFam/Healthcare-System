@@ -1,4 +1,4 @@
-package PrescriptionManagement.Prescription;
+package com.healthcare.prescriptionmanagement;
 
 import PrescriptionManagement.Prescription.domain.Dosage;
 import org.junit.jupiter.api.Assertions;

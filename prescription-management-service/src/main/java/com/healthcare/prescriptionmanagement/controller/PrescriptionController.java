@@ -1,11 +1,8 @@
 package com.healthcare.prescriptionmanagement.controller;
 
+import com.healthcare.prescriptionmanagement.domain.*;
 import com.healthcare.prescriptionmanagement.repository.MedicationRepository;
 import com.healthcare.prescriptionmanagement.service.PrescriptionService;
-import com.healthcare.prescriptionmanagement.domain.Prescription;
-import com.healthcare.prescriptionmanagement.domain.PrescriptionErrorType;
-import com.healthcare.prescriptionmanagement.domain.PrescriptionStatus;
-import com.healthcare.prescriptionmanagement.domain.Prescriptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +21,39 @@ public class PrescriptionController {
     @Autowired
     private MedicationRepository medicationRepository;
 
-    @PostMapping
-    public ResponseEntity<?> createPrescription(@RequestParam(value = "patientId") long patientId,
-                                                @RequestParam(value = "medicationId") long medicationId, @RequestParam(value = "status") PrescriptionStatus status) {
-        Prescription prescription = prescriptionService.createPrescription(patientId, medicationId, status);
-        return new ResponseEntity<Prescription>(prescription, HttpStatus.OK);
+
+
+    @PostMapping("/writemed")
+    public ResponseEntity<?> prescriptionOperation (@RequestBody Medication medication ) {
+
+
+        long idmed= prescriptionService.WriteMedication(medication);
+
+        return new ResponseEntity<Long>(idmed, HttpStatus.OK);
+
     }
+    @PostMapping("/addosage")
+    public ResponseEntity<?> prescriptionAddDosage (
+            @RequestParam(value="medicationId")long medicationId,
+            @RequestBody Dosage dosage ) {
+
+
+        long id= prescriptionService.addDoseForMedication(medicationId,dosage);
+        return new ResponseEntity<Long>(id, HttpStatus.OK);
+    }
+    @PostMapping("/createprescription")
+    public ResponseEntity<?>  creatPrescription (   @RequestParam(value="patientId")long patientId,
+                                                    @RequestParam(value="medicationId")long medicationId,
+                                                    @RequestParam(value="status")PrescriptionStatus status) {
+
+
+        Prescription prescription= prescriptionService.createPrescription(patientId,medicationId,status);
+
+        return new ResponseEntity<Prescription>(prescription, HttpStatus.OK);
+
+    }
+
+
 
     @GetMapping("{prescriptionId}")
     public ResponseEntity<?> getPrescription(@PathVariable long prescriptionId) {

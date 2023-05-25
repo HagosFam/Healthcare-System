@@ -1,4 +1,4 @@
-package PrescriptionManagement.Prescription;
+package com.healthcare.prescriptionmanagement;
 
 import PrescriptionManagement.Prescription.domain.Medication;
 import PrescriptionManagement.Prescription.domain.Prescription;
