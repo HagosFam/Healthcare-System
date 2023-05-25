@@ -69,7 +69,7 @@ export class PatientManagementComponent implements OnInit {
           if (index !== -1) {
             this.patients[index] = updatedPatient;
           }
-          console.log('Patient updated successfully.');
+          this.toastr.success("Patient updated successfully");
         },
         error => console.log(error)
       );
@@ -80,7 +80,7 @@ export class PatientManagementComponent implements OnInit {
       .subscribe(
         () => {
           this.patients = this.patients.filter(p => p.id !== id);
-          console.log('Patient deleted successfully.');
+          this.toastr.error("Patient deleted successfully.");
         },
         error => console.log(error)
       );
