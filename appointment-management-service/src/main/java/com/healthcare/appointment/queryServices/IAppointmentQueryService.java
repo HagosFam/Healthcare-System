@@ -1,17 +1,18 @@
 package com.healthcare.appointment.queryServices;
 
-import com.healthcare.appointment.domains.AppointmentDto;
-import com.healthcare.appointment.domains.Doctor;
+import com.healthcare.appointment.dtos.response.AppointmentResponseDto;
+import com.healthcare.appointment.dtos.response.AppointmentsResponseDto;
+import com.healthcare.appointment.dtos.Provider;
 
 import java.util.List;
 
 
 public interface IAppointmentQueryService {
-    List<Doctor> getAllDoctors();
+    List<Provider> getAllDoctors();
 
-    AppointmentDto searchAppointment(Long appointmentId);
+    AppointmentResponseDto searchAppointment(Long appointmentId);
 
-    List<AppointmentDto> listAllAppointments();
+    AppointmentsResponseDto listAllAppointments();
 
-    List<AppointmentDto> listAppointmentsPerDoctor(Long doctorId);
+    AppointmentsResponseDto listAppointmentsPerDoctor(Long doctorId);
 }

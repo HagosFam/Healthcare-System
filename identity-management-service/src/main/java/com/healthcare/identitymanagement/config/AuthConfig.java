@@ -32,7 +32,9 @@ public class AuthConfig {
         return http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/identity/auth").permitAll()
+                .requestMatchers("/api/v1/identity/auth/refreshToken").permitAll()
                 .requestMatchers("/api/v1/identity/users").permitAll()
+                .requestMatchers("/api/v1/identity/users/**").permitAll()
                 .and()
                 .build();
     }
