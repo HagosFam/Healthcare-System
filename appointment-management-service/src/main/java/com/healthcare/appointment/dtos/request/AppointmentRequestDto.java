@@ -1,15 +1,17 @@
-package com.healthcare.appointment.domains;
+package com.healthcare.appointment.dtos.request;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentDto {
-    private Long appointmentId;
+@Builder
+public class AppointmentRequestDto {
+    private Long id;
     private Long patientId;
-    private String appointmentDate;
-    private Long doctorId;
+    private String date;
+    private Long providerId;
     private String roomNumber;
 }

@@ -2,7 +2,7 @@ package com.healthcare.identitymanagement.service.adapter;
 
 import com.healthcare.identitymanagement.domain.User;
 import com.healthcare.identitymanagement.service.dto.UserResponseDto;
-import com.healthcare.identitymanagement.service.dto.UsersDto;
+import com.healthcare.identitymanagement.service.dto.UsersResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +28,10 @@ public class UserResponseAdapter {
                 .build();
     }
 
-    public static UsersDto getUserResponseDtosFromUsers(List<User> users) {
+    public static UsersResponseDto getUserResponseDtosFromUsers(List<User> users) {
         List<UserResponseDto> userResponseDtos = new ArrayList<>();
         for (User user : users)
             userResponseDtos.add(getUserDtoFromUser(user));
-        return new UsersDto(userResponseDtos);
+        return new UsersResponseDto(userResponseDtos);
     }
 }

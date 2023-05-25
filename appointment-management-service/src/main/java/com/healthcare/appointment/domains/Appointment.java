@@ -1,20 +1,22 @@
 package com.healthcare.appointment.domains;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import jakarta.persistence.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Appointment {
     @Id
-    @GeneratedValue
-    private Long appointmentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long patientId;
-    private String appointmentDate;
-    private Long doctorId;
+    private String date;
+    private Long providerId;
     private String roomNumber;
 }
