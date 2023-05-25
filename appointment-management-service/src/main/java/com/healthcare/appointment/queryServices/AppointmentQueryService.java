@@ -1,7 +1,5 @@
 package com.healthcare.appointment.queryServices;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.healthcare.appointment.dtos.*;
 import com.healthcare.appointment.dtos.response.AppointmentResponseAdapter;
 import com.healthcare.appointment.dtos.response.AppointmentResponseDto;
@@ -10,9 +8,9 @@ import com.healthcare.appointment.integrations.feign.FeignIdentityManagementServ
 import com.healthcare.appointment.integrations.feign.FeignPatientManagementService;
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import com.healthcare.appointment.domains.Appointment;
-import com.healthcare.appointment.util.Mapper;
 import com.healthcare.appointment.util.PatientMapper;
 import com.healthcare.appointment.util.ProviderMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,8 +30,10 @@ public class AppointmentQueryService implements IAppointmentQueryService {
 
     @Autowired
     private FeignPatientManagementService patientManagementService;
+    private static final String APPOINTMENT_MANAGEMENT_SERVICE = "appointmentManagementService";
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public List<Provider> getAllDoctors() {
         log.info("Appointment getAllDoctors");
 
@@ -48,6 +48,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     }
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentResponseDto searchAppointment(Long id) {
         log.info("Appointment get: {}", id);
 
@@ -82,6 +83,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     }
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentsResponseDto listAllAppointments() {
         log.info("Appointment listAll");
 
@@ -109,6 +111,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     }
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentsResponseDto listAppointmentsPerDoctor(Long doctorId) {
 
         log.info("Appointment getAppointmentsPerProvider: provider-di={}", doctorId);
@@ -124,10 +127,14 @@ public class AppointmentQueryService implements IAppointmentQueryService {
             Patient patient = PatientMapper.getPatient(patientResponse);
             if(patient != null)
                 appointmentResponseDto.setPatient(patient);
-
             appointmentsDto.add(appointmentResponseDto);
         }
 
         return AppointmentResponseAdapter.getListAppointmentDTO(appointments);
+    }
+
+    //Fallback
+    public ResponseEntity<?> appointmentManagementServiceFallback(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

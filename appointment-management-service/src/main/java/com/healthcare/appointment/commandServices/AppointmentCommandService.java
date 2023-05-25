@@ -11,6 +11,7 @@ import com.healthcare.appointment.integrations.feign.FeignPatientManagementServi
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import com.healthcare.appointment.util.PatientMapper;
 import com.healthcare.appointment.util.ProviderMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,10 @@ public class AppointmentCommandService implements IAppointmentCommandService {
     @Autowired
     private FeignPatientManagementService patientManagementService;
 
+    private static final String APPOINTMENT_MANAGEMENT_SERVICE = "appointmentManagementService";
+
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentResponseDto saveAppointment(AppointmentRequestDto appointmentDto) {
 
         log.info("Appointment save: {}", appointmentDto);
@@ -69,5 +73,10 @@ public class AppointmentCommandService implements IAppointmentCommandService {
         log.info("Appointment cancel: {}", id);
 
         repository.deleteById(id);
+    }
+
+    //Fallback
+    public ResponseEntity<?> appointmentManagementServiceFallback(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
