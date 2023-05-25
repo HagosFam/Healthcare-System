@@ -3,6 +3,8 @@ import { appointment } from '../models/appointment';
 import { AppointmentService } from '../service/appointment.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PatientService } from 'src/app/patient-service/service/patient.service';
+import { Patient } from 'src/app/patient-service/models/Patient';
 
 
 @Component({
@@ -22,9 +24,21 @@ export class CreateAppointmentComponent {
   });
   
 
-  constructor(private appointmentService: AppointmentService, private formBuilder:FormBuilder, private toastr:ToastrService) {}
+  constructor(private appointmentService: AppointmentService, private formBuilder:FormBuilder, private toastr:ToastrService, private patientService: PatientService) {}
 
-  ngOnInit(): void {
+  patients: Patient[] = new Array();
+
+
+  ngOnInit() {
+    this.getPatients();
+  }
+
+  getPatients() {
+    this.patientService.getPatients()
+      .subscribe(
+        patients => this.patients = patients,
+        error => console.log(error)
+      );
   }
 
 
