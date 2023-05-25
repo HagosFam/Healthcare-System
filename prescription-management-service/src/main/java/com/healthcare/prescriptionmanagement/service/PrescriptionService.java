@@ -21,41 +21,43 @@ public class PrescriptionService {
     @Autowired
     private PrescriptionRepository prescriptionRepository;
 
+    //DTO done
+    public MedicationDTO getmed(long medicationId){
 
-public Medication getmed(long medicationId){
-     return medicationRepository.findById(medicationId).get();
-}
-//    public long WriteMedication(String medicationName, String description, String manufacture) {
-//        Medication md = new Medication(medicationName, description, manufacture);
-//        medicationRepository.save(md);
-//        return md.getMedicationId();
-//    }
-public long WriteMedication(Medication md) {
-  //  Medication md1 = MedicationAdapter.getMedicationFromMedicationDTO(md);
-    medicationRepository.save(md);
-    return md.getMedicationId();
-}
+        Medication medication= medicationRepository.findById(medicationId).get();
+        return MedicationAdapter.getMedicationDTOFromMedication(medication);
+    }
+    //dto done
+    public long WriteMedication(MedicationDTO md) {
+        Medication md1 = MedicationAdapter.getMedicationFromMedicationDTO(md);
+        medicationRepository.save(md1);
+        return md1.getMedicationId();
+    }
 
-    public long addDoseForMedication(long medicationId, Dosage dosage) {
+    //DTO  done
+    public long addDoseForMedication(long medicationId, DosageDTO dosageDTO) {
         Medication m = medicationRepository.findById(medicationId).get();
+        Dosage dosage=DosageAdapter.getDosageFromDosageDTO(dosageDTO);
         dosageRepository.save(dosage);
         Dosage dosage1 = dosageRepository.findById(dosage.getDosageId()).get();
         m.addDosage(dosage1);
         medicationRepository.save(m);
         return m.getMedicationId();
     }
-
-    public Prescription createPrescription(long patientId, long medicatonId, PrescriptionStatus status) {
-      //  Patient patient = restTemplate.getForObject(serverUrl + "/{patientId}", Patient.class, patientId);
+    //dto done
+    public  PrescriptionDTO createPrescription(long patientId, long medicatonId, PrescriptionStatus status) {
+        //  Patient patient = restTemplate.getForObject(serverUrl + "/{patientId}", Patient.class, patientId);
         Medication m = medicationRepository.findById(medicatonId).get();
         Prescription pr = new Prescription(patientId, m, status);
         prescriptionRepository.save(pr);
-        return prescriptionRepository.findById(pr.getPrescriptionId()).get();
-      //  System.out.println("Presecription Created for: " + patient);
+        Prescription prescription= prescriptionRepository.findById(pr.getPrescriptionId()).get();
+        return PrescriptionAdapter.getPrescriptionDTOFromPrescription(prescription);
+
 
     }
-    public  void UpdatePrescription(long patientId, long prescriptionId, PrescriptionStatus status,String medicationName, String description, String manufacture, Dosage dosage) {
-       // Patient patient = restTemplate.getForObject(serverUrl + "/{patientId}", Patient.class, patientId);
+    //dto done
+    public  void UpdatePrescription(long patientId, long prescriptionId, PrescriptionStatus status,String medicationName, String description, String manufacture, DosageDTO dosageDTO) {
+        // Patient patient = restTemplate.getForObject(serverUrl + "/{patientId}", Patient.class, patientId);
         Prescription ps= prescriptionRepository.findById(prescriptionId).get();
         Medication m = new Medication(medicationName,description,manufacture);
         ps.setMedication(m);
@@ -63,32 +65,35 @@ public long WriteMedication(Medication md) {
         ps.setStatus(status);
         PrescriptionService lj= new PrescriptionService();
         long k= m.getMedicationId();
-        long h= lj.addDoseForMedication(k,dosage);
+        long h= lj.addDoseForMedication(k,dosageDTO);
         prescriptionRepository.save(ps);
-       //System.out.println("Presecription update for: " + patient);
+
 
     }
-
-    public Prescription ViewPrescription(long prescriptionId){
-         return prescriptionRepository.findById(prescriptionId).get();
+    //DTO DONE
+    public PrescriptionDTO ViewPrescription(long prescriptionId){
+        Prescription prescription= prescriptionRepository.findById(prescriptionId).get();
+        return PrescriptionAdapter.getPrescriptionDTOFromPrescription(prescription);
     }
+    //done dto
+    public PrescriptionDTO ViewPrescrptionForPatient(long patientId){
+        // Patient patient = restTemplate.getForObject(serverUrl + "/{patientId}", Patient.class, patientId);
+        Prescription prescription= prescriptionRepository.findByPatientId(patientId);
+        return PrescriptionAdapter.getPrescriptionDTOFromPrescription(prescription);
 
+    }
+    //DONE DTO
     public void DeletePrescription(long prescriptionId){
-       Prescription ps= prescriptionRepository.findById(prescriptionId).get();
-       prescriptionRepository.delete(ps);
-       System.out.println("Prescription: "+ps+" deleted");
+        Prescription ps= prescriptionRepository.findById(prescriptionId).get();
+        prescriptionRepository.delete(ps);
+
     }
 
-    public Prescription ViewPrescrptionForPatient(long patientId){
-       // Patient patient = restTemplate.getForObject(serverUrl + "/{patientId}", Patient.class, patientId);
-        return prescriptionRepository.findByPatientId(patientId);
+    //done dto
+    public List<PrescriptionDTO>getAllPrescriptions(){
+        List<Prescription> prescriptionList= prescriptionRepository.findAll();
+        return PrescriptionAdapter.getPrescriptionDTOListFromPrescriptionList(prescriptionList);
     }
-
-   public List<Prescription>getAllPrescriptions(){
-        return prescriptionRepository.findAll();
-   }
-
-
 
 
 
