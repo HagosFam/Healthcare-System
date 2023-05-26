@@ -8,16 +8,16 @@ import com.healthcare.appointment.integrations.feign.FeignIdentityManagementServ
 import com.healthcare.appointment.integrations.feign.FeignPatientManagementService;
 import com.healthcare.appointment.repositories.IAppointmentRepository;
 import com.healthcare.appointment.domains.Appointment;
+import com.healthcare.appointment.util.PatientMapper;
+import com.healthcare.appointment.util.ProviderMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -30,8 +30,10 @@ public class AppointmentQueryService implements IAppointmentQueryService {
 
     @Autowired
     private FeignPatientManagementService patientManagementService;
+    private static final String APPOINTMENT_MANAGEMENT_SERVICE = "appointmentManagementService";
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public List<Provider> getAllDoctors() {
         log.info("Appointment getAllDoctors");
 
@@ -39,13 +41,14 @@ public class AppointmentQueryService implements IAppointmentQueryService {
 
         //GET Provider
         ResponseEntity<?> providerResponse = identityManagementService.findByRole(Role.PROVIDER);
-        if(providerResponse.getStatusCode() == HttpStatus.OK)
+        if (providerResponse.getStatusCode() == HttpStatus.OK)
             providers.addAll((List<Provider>) Objects.requireNonNull(providerResponse.getBody()));
 
         return providers;
     }
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentResponseDto searchAppointment(Long id) {
         log.info("Appointment get: {}", id);
 
@@ -56,23 +59,22 @@ public class AppointmentQueryService implements IAppointmentQueryService {
 
             AppointmentResponseDto appointmentDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
 
-            //GET Provider
-//            ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
-//            if(providerResponse.getStatusCode() == HttpStatus.OK)
-//            {
-//                Provider provider = (Provider)providerResponse.getBody();
-//                if(provider != null)
-//                    appointmentDto.setProvider(provider);
-//            }
+            try {
+                //GET Provider
+                ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
+                Provider provider = ProviderMapper.getProvider(providerResponse);
+                if(provider != null)
+                    appointmentDto.setProvider(provider);
 
-            //GET patient
-//            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
-//            if(patientResponse.getStatusCode() == HttpStatus.OK)
-//            {
-//                Patient patient= (Patient) patientResponse.getBody();
-//                if(patient != null)
-//                    appointmentDto.setPatient(patient);
-//            }
+                //GET patient
+                ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+                Patient patient = PatientMapper.getPatient(patientResponse);
+                if(patient != null)
+                    appointmentDto.setPatient(patient);
+
+            } catch (Exception ex) {
+                log.error("Unable to get provider/patient: {}", id);
+            }
 
             return appointmentDto;
         }
@@ -81,6 +83,7 @@ public class AppointmentQueryService implements IAppointmentQueryService {
     }
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentsResponseDto listAllAppointments() {
         log.info("Appointment listAll");
 
@@ -91,29 +94,24 @@ public class AppointmentQueryService implements IAppointmentQueryService {
             AppointmentResponseDto appointmentResponseDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
 
             //GET Provider
-//            ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
-//            if(providerResponse.getStatusCode() == HttpStatus.OK)
-//            {
-//                Provider provider = (Provider)providerResponse.getBody();
-//                if(provider != null)
-//                    appointmentResponseDto.setProvider(provider);
-//            }
+            ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
+            Provider provider = ProviderMapper.getProvider(providerResponse);
+            if(provider != null)
+                appointmentResponseDto.setProvider(provider);
 
             //GET patient
-//            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
-//            if(patientResponse.getStatusCode() == HttpStatus.OK)
-//            {
-//                Patient patient= (Patient) patientResponse.getBody();
-//                if(patient != null)
-//                    appointmentResponseDto.setPatient(patient);
-//            }
+            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+            Patient patient = PatientMapper.getPatient(patientResponse);
+            if(patient != null)
+                appointmentResponseDto.setPatient(patient);
+
             appointmentsDto.add(appointmentResponseDto);
         }
-
-        return AppointmentResponseAdapter.getListAppointmentDTO(appointments);
+        return new AppointmentsResponseDto(appointmentsDto);
     }
 
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentsResponseDto listAppointmentsPerDoctor(Long doctorId) {
 
         log.info("Appointment getAppointmentsPerProvider: provider-di={}", doctorId);
@@ -125,16 +123,18 @@ public class AppointmentQueryService implements IAppointmentQueryService {
             AppointmentResponseDto appointmentResponseDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
 
             //GET patient
-//            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
-//            if(patientResponse.getStatusCode() == HttpStatus.OK)
-//            {
-//                Patient patient= (Patient) patientResponse.getBody();
-//                if(patient != null)
-//                    appointmentResponseDto.setPatient(patient);
-//            }
+            ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+            Patient patient = PatientMapper.getPatient(patientResponse);
+            if(patient != null)
+                appointmentResponseDto.setPatient(patient);
             appointmentsDto.add(appointmentResponseDto);
         }
 
         return AppointmentResponseAdapter.getListAppointmentDTO(appointments);
+    }
+
+    //Fallback
+    public ResponseEntity<?> appointmentManagementServiceFallback(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

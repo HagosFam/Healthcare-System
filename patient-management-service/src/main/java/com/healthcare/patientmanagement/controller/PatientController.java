@@ -25,9 +25,6 @@ import java.util.List;
 @AllArgsConstructor
 @Slf4j
 public class PatientController {
-
-    private static final String SERVICE_PATIENT = "servicePatient";
-
     private PatientService patientService;
 
     @Operation(
@@ -39,7 +36,6 @@ public class PatientController {
             description = "HTTP Status 201 CREATED"
     )
     @PostMapping
-    @CircuitBreaker(name = SERVICE_PATIENT, fallbackMethod = "servicePatientFallback")
     public ResponseEntity<?> create(
             @Valid
             @RequestBody PatientDto patientDto){
@@ -142,10 +138,5 @@ public class PatientController {
         PatientDto patientDto = patientService.getPatientByPhoneNumberOrEmail(phoneNumberOrEmail);
 
         return new ResponseEntity<>(patientDto, HttpStatus.OK);
-    }
-
-    //Fallback
-    public ResponseEntity<?> servicePatientFallback(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

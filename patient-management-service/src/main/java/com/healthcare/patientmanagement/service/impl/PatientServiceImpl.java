@@ -9,8 +9,11 @@ import com.healthcare.patientmanagement.exception.PhoneNumberAlreadyExistsExcept
 import com.healthcare.patientmanagement.integration.feign.FeignIdentityManagementService;
 import com.healthcare.patientmanagement.mapper.AutoPatientMapper;
 import com.healthcare.patientmanagement.service.PatientService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.healthcare.patientmanagement.exception.ResourceNotFoundException;
 import com.healthcare.patientmanagement.repository.PatientRepository;
@@ -24,9 +27,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PatientServiceImpl implements PatientService {
 
+    private static final String PATIENT_MANAGEMENT_SERVICE = "patientManagementService";
+
     private PatientRepository patientRepository;
 
-    private FeignIdentityManagementService identityManagementServiceUtil;
+    private FeignIdentityManagementService identityManagementService;
 
     @Override
     public PatientDto getPatient(Long id) {
@@ -63,6 +68,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @CircuitBreaker(name = PATIENT_MANAGEMENT_SERVICE, fallbackMethod = "patientManagementServiceFallback")
     public PatientDto createPatient(PatientDto patientDto) {
 
         log.info("Patient create: {}", patientDto);
@@ -87,7 +93,7 @@ public class PatientServiceImpl implements PatientService {
                 "1234",
                 Role.PATIENT
         );
-        identityManagementServiceUtil.save(user);
+        identityManagementService.save(user);
 
         return AutoPatientMapper.MAPPER.mapToPatientDto(savedPatient);
     }
@@ -125,5 +131,10 @@ public class PatientServiceImpl implements PatientService {
     public void deleteAll() {
         log.error("Patients deleteAll");
         patientRepository.deleteAll();;
+    }
+
+    //Fallback
+    public ResponseEntity<?> patientManagementServiceFallback(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

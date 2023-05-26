@@ -9,6 +9,9 @@ import com.healthcare.appointment.dtos.response.AppointmentResponseDto;
 import com.healthcare.appointment.integrations.feign.FeignIdentityManagementService;
 import com.healthcare.appointment.integrations.feign.FeignPatientManagementService;
 import com.healthcare.appointment.repositories.IAppointmentRepository;
+import com.healthcare.appointment.util.PatientMapper;
+import com.healthcare.appointment.util.ProviderMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +30,10 @@ public class AppointmentCommandService implements IAppointmentCommandService {
     @Autowired
     private FeignPatientManagementService patientManagementService;
 
+    private static final String APPOINTMENT_MANAGEMENT_SERVICE = "appointmentManagementService";
+
     @Override
+    @CircuitBreaker(name = APPOINTMENT_MANAGEMENT_SERVICE, fallbackMethod = "appointmentManagementServiceFallback")
     public AppointmentResponseDto saveAppointment(AppointmentRequestDto appointmentDto) {
 
         log.info("Appointment save: {}", appointmentDto);
@@ -37,23 +43,17 @@ public class AppointmentCommandService implements IAppointmentCommandService {
 
         AppointmentResponseDto responseDto = AppointmentResponseAdapter.getAppointmentDTO(appointment);
 
-        //GET provider
-//        ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
-//        if(providerResponse.getStatusCode() == HttpStatus.OK)
-//        {
-//            Provider provider = (Provider)providerResponse.getBody();
-//            if(provider != null)
-//                responseDto.setProvider(provider);
-//        }
-//
-//        //GET Patient
-//        ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
-//        if(patientResponse.getStatusCode() == HttpStatus.OK)
-//        {
-//            Patient patient = (Patient)patientResponse.getBody();
-//            if(patient != null)
-//                responseDto.setPatient(patient);
-//        }
+        //GET Provider
+        ResponseEntity<?> providerResponse = identityManagementService.findById(appointment.getProviderId());
+        Provider provider = ProviderMapper.getProvider(providerResponse);
+        if(provider != null)
+            responseDto.setProvider(provider);
+
+        //GET patient
+        ResponseEntity<?> patientResponse = patientManagementService.findById(appointment.getPatientId());
+        Patient patient = PatientMapper.getPatient(patientResponse);
+        if(patient != null)
+            responseDto.setPatient(patient);
 
         return responseDto;
     }
@@ -73,5 +73,10 @@ public class AppointmentCommandService implements IAppointmentCommandService {
         log.info("Appointment cancel: {}", id);
 
         repository.deleteById(id);
+    }
+
+    //Fallback
+    public ResponseEntity<?> appointmentManagementServiceFallback(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
